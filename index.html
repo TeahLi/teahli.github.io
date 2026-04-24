@@ -1,57 +1,427 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teah Li | Personal Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teah Li | Philosophy</title>
   <style>
+    :root {
+      --bg: #f7f6f2;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --muted: #666;
+      --line: #ddd7cd;
+      --accent: #7b6f62;
+      --max: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      max-width: 760px;
-      margin: 40px auto;
-      padding: 0 20px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      line-height: 1.8;
-      color: #222;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.75;
     }
-    h1, h2 {
-      color: #111;
-    }
+
     a {
-      color: #0a66c2;
+      color: inherit;
       text-decoration: none;
     }
-    a:hover {
-      text-decoration: underline;
+
+    img {
+      max-width: 100%;
+      display: block;
     }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 246, 242, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-size: 0.96rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 72px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.4rem);
+      line-height: 1.05;
+      margin: 0 0 16px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 38rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 1px solid var(--text);
+      background: transparent;
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      background: var(--text);
+      color: white;
+    }
+
+    .portrait {
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      background:
+        linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.08)),
+        url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80") center/cover;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    section {
+      padding: 56px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 0 0 20px;
+      font-weight: 600;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      color: #333;
+      margin-bottom: 22px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
     .card {
-      background: #f7f7f7;
-      padding: 20px;
-      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    ul.clean {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .item {
+      margin-bottom: 18px;
+    }
+
+    .item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.03rem;
+    }
+
+    .quote {
+      font-size: 1.15rem;
+      max-width: 760px;
+      color: #2c2c2c;
+    }
+
+    .footer {
+      padding: 40px 0 60px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait {
+        max-width: 420px;
+      }
+
+      .nav {
+        align-items: flex-start;
+        padding: 14px 0;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Teah Li</h1>
-  <p>PhD Student in Philosophy</p>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">Teah Li</div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#writing">Writing</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="card">
-    <p>Hello! I am a PhD student in philosophy. My research interests include ethics, political philosophy, and phenomenology.</p>
-  </div>
+  <main>
+    <section class="hero" id="home" style="border-top:none;">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Philosophy · Personal Website</div>
+          <h1>Teah Li</h1>
+          <p class="subtitle">
+            PhD Student in Philosophy. My research focuses on political philosophy,
+            ethics, and modern continental thought.
+          </p>
+          <p class="quote">
+            I am interested in how philosophical ideas illuminate collective life,
+            moral conflict, and the shape of modern subjectivity.
+          </p>
+          <div class="hero-buttons">
+            <a class="btn" href="#research">View Research</a>
+            <a class="btn" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+        <div class="portrait"></div>
+      </div>
+    </section>
 
-  <h2>Research Interests</h2>
-  <ul>
-    <li>Ethics</li>
-    <li>Political Philosophy</li>
-    <li>Phenomenology</li>
-  </ul>
+    <section id="about">
+      <div class="container">
+        <h2>About</h2>
+        <p class="section-intro">
+          I am a doctoral researcher in philosophy. My work explores questions in
+          political philosophy, ethics, and social theory. I am especially interested
+          in community, normativity, modernity, and the philosophical interpretation
+          of lived experience.
+        </p>
+        <div class="two-col">
+          <div class="card">
+            <h3>Research Interests</h3>
+            <ul class="clean">
+              <li>Political Philosophy</li>
+              <li>Moral Philosophy / Ethics</li>
+              <li>Phenomenology</li>
+              <li>Social and Critical Theory</li>
+              <li>Modern European Philosophy</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Education</h3>
+            <div class="item">
+              <strong>PhD in Philosophy</strong>
+              <div class="muted">[Your University], [Year–Present]</div>
+            </div>
+            <div class="item">
+              <strong>MA / MPhil / BA</strong>
+              <div class="muted">[Your Previous Institution]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>Education</h2>
-  <p>PhD in Philosophy, [Your University]</p>
+    <section id="research">
+      <div class="container">
+        <h2>Research</h2>
+        <p class="section-intro">
+          My current research asks how philosophical reflection can clarify the tensions
+          between individuality, institutions, and forms of collective life. I am also
+          interested in the relation between abstract theory and concrete experience.
+        </p>
 
-  <h2>Publications</h2>
-  <p>Coming soon.</p>
+        <div class="card">
+          <div class="item">
+            <strong>Dissertation Project</strong>
+            <div>
+              Add 3–5 sentences here introducing your dissertation topic in plain language.
+              Write this part for non-specialists first.
+            </div>
+          </div>
 
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+          <div class="item">
+            <strong>Current Themes</strong>
+            <ul class="clean">
+              <li>Belonging, community, and political identity</li>
+              <li>Moral experience and practical reason</li>
+              <li>Norms, institutions, and social life</li>
+              <li>Philosophy and modernity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing">
+      <div class="container">
+        <h2>Writing</h2>
+        <div class="two-col">
+          <div class="card">
+            <h3>Publications</h3>
+            <div class="item">
+              <strong>Article Title One</strong>
+              <div class="muted">Journal Name, Year</div>
+            </div>
+            <div class="item">
+              <strong>Article Title Two</strong>
+              <div class="muted">Journal Name, Year</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Works in Progress</h3>
+            <div class="item">
+              <strong>Working Paper Title</strong>
+              <div class="muted">Short one-sentence description.</div>
+            </div>
+            <div class="item">
+              <strong>Conference Paper</strong>
+              <div class="muted">Short one-sentence description.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <div class="container">
+        <h2>Teaching</h2>
+        <p class="section-intro">
+          I teach and assist courses in philosophy with a focus on clear argumentation,
+          close reading, and connecting philosophical ideas to contemporary life.
+        </p>
+
+        <div class="card">
+          <div class="item">
+            <strong>[Course Title]</strong>
+            <div class="muted">Teaching Assistant / Instructor, [Term]</div>
+          </div>
+          <div class="item">
+            <strong>[Course Title]</strong>
+            <div class="muted">Teaching Assistant / Instructor, [Term]</div>
+          </div>
+          <div class="item">
+            <strong>[Course Title]</strong>
+            <div class="muted">Teaching Assistant / Instructor, [Term]</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cv">
+      <div class="container">
+        <h2>CV</h2>
+        <div class="card">
+          <p>
+            You can add a PDF version of your CV later and link it here.
+          </p>
+          <p>
+            Example: <a href="cv.pdf"><strong>Download CV (PDF)</strong></a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <div class="card">
+          <p>Email: yourname@email.com</p>
+          <p>Google Scholar: add link here</p>
+          <p>ORCID: add link here</p>
+          <p>PhilPeople: add link here</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Teah Li
+    </div>
+  </footer>
 </body>
 </html>
