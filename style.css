@@ -137,6 +137,26 @@ html[data-t="night"] .ico-moon { opacity: 1; color: var(--ink); }
 
 .mark { display: block; flex: none; fill: var(--seal); }
 
+/* 音乐播放器：三个按钮共用一枚胶囊外框，和其他调节按钮同一语言 */
+.player {
+  display: flex; align-items: center; gap: 1px;
+  border: 1px solid var(--rule); border-radius: 999px; padding: 2px 3px;
+  transition: opacity .3s;
+}
+.pbtn {
+  background: none; border: 0; margin: 0; padding: 4px 5px;
+  cursor: pointer; color: var(--muted);
+  display: grid; place-items: center; line-height: 0;
+  transition: color .25s;
+}
+.pbtn:hover { color: var(--ink); }
+.ico-play, .ico-pause { display: block; }
+.ico-pause { display: none; }
+.player[data-playing="1"] .ico-play  { display: none; }
+.player[data-playing="1"] .ico-pause { display: block; }
+.player[data-playing="1"] .pbtn-play { color: var(--seal); }
+.player[data-err="1"] { opacity: .4; }        /* 音频取不到时整体压暗 */
+
 /* 还没填网址的条目：不可点的灰字 + 极淡的虚线，表示「位置留着」。
    在 content.js 里把 href 填上，就会自动变成正常链接。 */
 .dead { color: var(--muted); cursor: default; }
@@ -187,7 +207,7 @@ html[data-sty="a"] #siteB { display: none; }
   color: var(--ink);
   white-space: nowrap;
 }
-.topctl { display: flex; align-items: center; gap: 11px; }
+.topctl { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; }
 .vrule { width: 1px; height: 14px; background: var(--rule); }
 
 /* 首屏 */
@@ -364,9 +384,9 @@ html[data-l="zh"] .colophon .yr { letter-spacing: .08em; }
 .linkcol { display: flex; flex-direction: column; gap: 14px; font: 400 14px var(--mono); letter-spacing: .04em; align-items: flex-start; }
 .cta { margin-top: 10px; border: 1px solid var(--seal); padding: 11px 22px; border-radius: 999px; }
 
-.b-notes .n-item { display: block; border-bottom: 1px solid var(--rule); padding-bottom: 13px; color: var(--ink); font: 400 16px/1.45 var(--serif); }
+.b-notes .n-item { display: block; border-bottom: 1px solid var(--rule); padding-bottom: 13px; color: var(--ink); font: 400 17px/1.4 var(--serif); }   /* 与 .talk-title 同号 */
 .b-notes a.n-item:hover { color: var(--seal); }
-.b-notes .note-d { display: block; margin-top: 5px; font-size: 10.5px; }
+.b-notes .note-d { display: block; margin-top: 5px; }   /* 字号继承 .note-d，与布局A一致 */
 
 /* ── 5. 响应式 ───────────────────────────────────────────────────────── */
 @media (max-width: 900px) {

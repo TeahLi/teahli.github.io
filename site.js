@@ -30,6 +30,7 @@
     document.querySelectorAll('.nv').forEach(function (el) {
       el.setAttribute('aria-current', +el.dataset.n === st.page ? 'true' : 'false');
     });
+    if (typeof syncPlayer === 'function') syncPlayer();
   }
 
   /* ══ 2. 小工具 ══════════════════════════════════════════════════════ */
@@ -64,10 +65,26 @@
     '<svg class="ico ico-sun" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.8v2.3M12 18.9v2.3M2.8 12h2.3M18.9 12h2.3M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M18.5 5.5l-1.6 1.6M7.1 16.9l-1.6 1.6"/></svg>' +
     '<span class="ico-sep">/</span>' +
     '<svg class="ico ico-moon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M20.2 14.9A8.6 8.6 0 0 1 9.1 3.8a8.6 8.6 0 1 0 11.1 11.1Z"/></svg>';
+  var ICO = {
+    prev: '<svg viewBox="0 0 12 12" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M2 1.8h1.5v8.4H2zM11 1.8v8.4L4.7 6z"/></svg>',
+    play: '<svg class="ico-play" viewBox="0 0 12 12" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M2.6 1.5 10.6 6l-8 4.5z"/></svg>',
+    pause:'<svg class="ico-pause" viewBox="0 0 12 12" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M2.9 1.8h2.2v8.4H2.9zM6.9 1.8h2.2v8.4H6.9z"/></svg>',
+    next: '<svg viewBox="0 0 12 12" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M8.5 1.8H10v8.4H8.5zM1 1.8v8.4L7.3 6z"/></svg>'
+  };
+  var TRACKS = (S.music || []).filter(function (t) { return t && t.src; });
+  var PLAYER = TRACKS.length
+    ? '<span class="player" data-playing="0" data-err="0">' +
+        '<button type="button" class="pbtn" data-act="prev">' + ICO.prev + '</button>' +
+        '<button type="button" class="pbtn pbtn-play" data-act="play">' + ICO.play + ICO.pause + '</button>' +
+        '<button type="button" class="pbtn" data-act="next">' + ICO.next + '</button>' +
+      '</span>'
+    : '';
+
   var CTL =
     '<button type="button" class="pill" data-act="sty">' + bi({ en: 'STYLE', zh: '风格' }) + '</button>' +
     '<button type="button" class="pill" data-act="lang">EN / 中</button>' +
-    '<button type="button" class="pill" data-act="theme" aria-label="theme">' + THEME_ICONS + '</button>';
+    '<button type="button" class="pill" data-act="theme" aria-label="theme">' + THEME_ICONS + '</button>' +
+    PLAYER;
 
   /* 全站统一的四个栏目；布局A当作锚点，布局B当作页码 */
   var NAV = [
@@ -255,6 +272,55 @@
       '</main>';
   }
 
+  /* ══ 4.5 背景音乐 ═══════════════════════════════════════════════════
+     一个 <audio> 实例，两套按钮（长卷顶栏 / 册页侧栏）共同控制它。
+     切换布局不会打断播放，因为 audio 挂在 JS 里而不是任一布局的 DOM 上。 */
+  var audio = null, cur = 0;
+  var PL = {
+    play:  { en: 'Play',           zh: '播放' },
+    pause: { en: 'Pause',          zh: '暂停' },
+    prev:  { en: 'Previous track', zh: '上一曲' },
+    next:  { en: 'Next track',     zh: '下一曲' },
+    err:   { en: 'Audio unavailable', zh: '音频加载失败' }
+  };
+  function say(k) { return PL[k][st.lang] || PL[k].en; }
+
+  function syncPlayer() {
+    if (!TRACKS.length) return;
+    var t = TRACKS[cur] || {};
+    var name = (t.title || '') + (t.artist ? ' · ' + t.artist : '');
+    var on = !!(audio && !audio.paused && !audio.ended);
+    [].forEach.call(document.querySelectorAll('.player'), function (p) {
+      p.dataset.playing = on ? '1' : '0';
+      p.title = p.dataset.err === '1' ? say('err') + ' — ' + (t.src || '') : name;
+      var q = function (a) { return p.querySelector('[data-act="' + a + '"]'); };
+      if (q('play')) q('play').setAttribute('aria-label', (on ? say('pause') : say('play')) + ' — ' + name);
+      if (q('prev')) q('prev').setAttribute('aria-label', say('prev'));
+      if (q('next')) q('next').setAttribute('aria-label', say('next'));
+    });
+  }
+
+  function loadTrack(i, autoplay) {
+    if (!TRACKS.length) return;
+    cur = ((i % TRACKS.length) + TRACKS.length) % TRACKS.length;
+    if (!audio) {
+      audio = new Audio();
+      audio.preload = 'none';                  // 没点播放就不下载，不浪费访客流量
+      audio.volume = 0.5;                      // 背景乐，压低一点
+      audio.addEventListener('ended', function () { loadTrack(cur + 1, true); });  // 循环到下一首
+      audio.addEventListener('play', syncPlayer);
+      audio.addEventListener('pause', syncPlayer);
+      audio.addEventListener('error', function () {
+        [].forEach.call(document.querySelectorAll('.player'), function (p) { p.dataset.err = '1'; });
+        syncPlayer();
+      });
+    }
+    [].forEach.call(document.querySelectorAll('.player'), function (p) { p.dataset.err = '0'; });
+    audio.src = TRACKS[cur].src;
+    if (autoplay) { var pr = audio.play(); if (pr && pr.catch) pr.catch(syncPlayer); }
+    syncPlayer();
+  }
+
   /* ══ 5. 挂载 + 事件 ═════════════════════════════════════════════════ */
   document.getElementById('siteA').innerHTML = renderA();
   document.getElementById('siteB').innerHTML = renderB();
@@ -286,9 +352,19 @@
       if (st.sty === 'a') window.scrollTo(0, 0);
     }
     if (b.dataset.n !== undefined) { st.page = +b.dataset.n; apply(); }
+    if (b.dataset.act === 'play') {
+      if (!audio) loadTrack(cur, true);
+      else if (audio.paused) { var pr = audio.play(); if (pr && pr.catch) pr.catch(syncPlayer); }
+      else audio.pause();
+    }
+    if (b.dataset.act === 'prev' || b.dataset.act === 'next') {
+      var was = !!(audio && !audio.paused);          // 暂停时切曲保持暂停
+      loadTrack(cur + (b.dataset.act === 'next' ? 1 : -1), was);
+    }
   });
 
   apply();
+  syncPlayer();
 
   /* ══ 6. 背景画布 ════════════════════════════════════════════════════
      移植自设计稿：水墨峡谷 + 星野。滚动/翻页时山水溶解为星空。      */

@@ -139,6 +139,17 @@ window.SITE = {
     { label: 'CV ↓',           href: '' }   // 例：'cv.pdf'（把 cv.pdf 放到仓库根目录）
   ],
 
+  /* ── 背景音乐 ────────────────────────────────────────────────
+     循环播放：最后一首放完自动回到第一首。
+     不会自动播放 —— 浏览器一律拦截带声音的自动播放，而且访客
+     一进站就出声也不礼貌，所以要点播放键才响。
+     加一首：把 mp3 放进 assets/music/，然后复制下面任意一行改字。
+     整个数组清空或删掉，播放器按钮就不出现，其余功能不受影响。 */
+  music: [
+    { title: 'Aurora Borealis',   artist: 'John H. Clarke', src: 'assets/music/01-aurora-borealis.mp3' },
+    { title: 'And The Winner Is', artist: 'Gérard Darmon',  src: 'assets/music/02-and-the-winner-is.mp3' }
+  ],
+
   /* 页脚年份 */
   year: { en: '2026', zh: '二〇二六' }
 };
