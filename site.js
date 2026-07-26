@@ -214,7 +214,8 @@
 
     var notes = S.notes.map(function (n) {
       var inner = bi(n.title) + '<span class="note-d">' + n.date + '</span>';
-      return n.href ? '<a href="' + n.href + '">' + inner + '</a>' : '<a>' + inner + '</a>';
+      return n.href ? '<a class="n-item" href="' + n.href + '">' + inner + '</a>'
+                    : '<div class="n-item">' + inner + '</div>';
     }).join('');
 
     var links = S.links.map(function (l) {
@@ -225,7 +226,7 @@
       '<aside class="side">' +
         '<div>' +
           '<button type="button" class="side-brand" data-n="0">' + SEAL +
-            '<span>' + bi(S.name) + '</span></button>' +
+            '<span class="brand">' + bi(S.nameCaps) + '</span></button>' +
           '<nav class="nav">' + nav + '</nav>' +
         '</div>' +
         '<div class="side-ctl">' + CTL + '</div>' +
@@ -296,6 +297,19 @@
   var STAR_COLS = ['205,222,255', '240,244,255', '255,224,178', '168,238,255'];
   var IMG_W = 736, IMG_H = 1308, IMG_R = IMG_H / IMG_W;   // 水墨原图比例
   var BOAT_TRIM = 3;                                       // 船身俯仰角（度）
+
+  /* 白天模式里水墨是用 multiply 压在浅色纸上的，正文又直接压在画面上，
+     Research / Papers 两页会被山体吃掉对比度。这里给「布局B + 白天」
+     单独一条更淡的浓度曲线：逐页递减不变，所以「翻一页天开一分」的
+     亮度渐变保留，只是整体抬亮。夜间是浅字压深底，不受影响，沿用原曲线。 */
+  var INK_DAY_B = [1.00, 0.52, 0.40, 0.28, 0.20];   // 对应第 0~4 页
+
+  function inkCurve(p) {
+    var seg = p * (INK_DAY_B.length - 1);
+    var i = Math.max(0, Math.min(INK_DAY_B.length - 2, Math.floor(seg)));
+    var f = Math.max(0, Math.min(1, seg - i));
+    return INK_DAY_B[i] + (INK_DAY_B[i + 1] - INK_DAY_B[i]) * f;
+  }
 
   function Scene(canvas) {
     this.cv = canvas;
@@ -599,6 +613,7 @@
     }
 
     var inkA = 1 - 0.78 * e;
+    if (!night && st.sty === 'b') inkA = Math.min(inkA, inkCurve(p));
     c.save();
     c.globalCompositeOperation = 'multiply';
     c.globalAlpha = inkA;

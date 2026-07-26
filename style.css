@@ -166,7 +166,7 @@ html[data-sty="a"] #siteB { display: none; }
   display: flex;
   align-items: center;
   gap: clamp(12px, 2vw, 26px);
-  font: 400 13.5px var(--serif);
+  font: 400 15.5px var(--serif);   /* 栏目名，比署名略小一档 */
   color: var(--muted);
 }
 .topnav .navlink { color: var(--muted); }
@@ -277,7 +277,7 @@ html[data-sty="a"] #siteB { display: none; }
   display: flex; justify-content: space-between; gap: 18px; align-items: baseline;
   border-bottom: 1px solid var(--rule); padding-bottom: 14px; color: var(--ink);
 }
-.note:hover { color: var(--seal); }
+a.note:hover { color: var(--seal); }
 .note-t { font: 400 17px/1.4 var(--serif); }
 .note-d { font: 400 11px var(--mono); color: var(--muted); white-space: nowrap; }
 
@@ -315,7 +315,7 @@ html[data-l="zh"] .colophon .yr { letter-spacing: .08em; }
   display: flex; align-items: center; gap: 12px; margin-bottom: 44px;
   background: transparent; border: 0; padding: 0; cursor: pointer; text-align: left;
 }
-.side-brand span:last-child { font: 500 15px var(--serif); color: var(--ink); }
+.side-brand .brand { color: var(--ink); }   /* 字体规则与 1a 顶栏署名共用 .brand */
 .nav { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
 .nv {
   background: transparent; border: 0; padding: 9px 0; cursor: pointer;
@@ -364,9 +364,8 @@ html[data-l="zh"] .colophon .yr { letter-spacing: .08em; }
 .linkcol { display: flex; flex-direction: column; gap: 14px; font: 400 14px var(--mono); letter-spacing: .04em; align-items: flex-start; }
 .cta { margin-top: 10px; border: 1px solid var(--seal); padding: 11px 22px; border-radius: 999px; }
 
-.b-notes a { display: block; border-bottom: 1px solid var(--rule); padding-bottom: 13px; color: var(--ink); font: 400 16px/1.45 var(--serif); }
-.b-notes a:hover { color: var(--seal); }
-.b-notes a:not([href]) { color: var(--muted); cursor: default; }   /* 还没填网址的随笔 */
+.b-notes .n-item { display: block; border-bottom: 1px solid var(--rule); padding-bottom: 13px; color: var(--ink); font: 400 16px/1.45 var(--serif); }
+.b-notes a.n-item:hover { color: var(--seal); }
 .b-notes .note-d { display: block; margin-top: 5px; font-size: 10.5px; }
 
 /* ── 5. 响应式 ───────────────────────────────────────────────────────── */
