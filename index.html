@@ -1,427 +1,881 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Teah Li | Philosophy</title>
-  <style>
-    :root {
-      --bg: #f7f6f2;
-      --card: #ffffff;
-      --text: #1f1f1f;
-      --muted: #666;
-      --line: #ddd7cd;
-      --accent: #7b6f62;
-      --max: 1080px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.75;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(247, 246, 242, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 72px;
-      gap: 20px;
-    }
-
-    .brand {
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-      font-size: 0.96rem;
-      color: var(--muted);
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .hero {
-      padding: 72px 0 40px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.78rem;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.4rem);
-      line-height: 1.05;
-      margin: 0 0 16px;
-      font-weight: 600;
-    }
-
-    .subtitle {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 38rem;
-      margin-bottom: 24px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 18px;
-      border: 1px solid var(--text);
-      background: transparent;
-      font-size: 0.95rem;
-    }
-
-    .btn:hover {
-      background: var(--text);
-      color: white;
-    }
-
-    .portrait {
-      aspect-ratio: 4 / 5;
-      border-radius: 18px;
-      background:
-        linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.08)),
-        url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80") center/cover;
-      border: 1px solid var(--line);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    }
-
-    section {
-      padding: 56px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      margin: 0 0 20px;
-      font-weight: 600;
-    }
-
-    .section-intro {
-      max-width: 760px;
-      color: #333;
-      margin-bottom: 22px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 22px;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.15rem;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    ul.clean {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    .item {
-      margin-bottom: 18px;
-    }
-
-    .item strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 1.03rem;
-    }
-
-    .quote {
-      font-size: 1.15rem;
-      max-width: 760px;
-      color: #2c2c2c;
-    }
-
-    .footer {
-      padding: 40px 0 60px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 860px) {
-      .hero-grid,
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-
-      .portrait {
-        max-width: 420px;
-      }
-
-      .nav {
-        align-items: flex-start;
-        padding: 14px 0;
-        flex-direction: column;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>李林鸿 · AI 哲学与科学哲学</title>
+<meta name="description" content="李林鸿的个人学术主页：人工智能哲学、科学实在论、机器学习认识论与学术写作。">
+<meta name="theme-color" content="#0b0f15">
+<meta property="og:title" content="李林鸿 · AI 哲学与科学哲学">
+<meta property="og:description" content="人工智能哲学、科学实在论与机器学习认识论。">
+<meta property="og:type" content="website">
+<script src="./support.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <div class="brand">Teah Li</div>
-      <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#writing">Writing</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#cv">CV</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#e8e5de;font-family:'EB Garamond',Georgia,serif}
+a{color:var(--seal,#c8543d);text-decoration:none}
+a:hover{color:var(--ink,#111)}
+.dv-turn{padding:40px 44px 34px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 18px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tid:hover{color:#fff}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-oid:hover{color:#1a1a1a}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;border:1px solid rgba(0,0,0,.1);border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.08);overflow:hidden;position:relative}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:24px 0 0;font:12px/1.6 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.dv-ctl{display:flex;gap:8px;align-items:center;margin:0 0 18px;font:400 11px system-ui,sans-serif;color:rgba(0,0,0,.55)}
+.dv-ctl button{font:500 11px system-ui,sans-serif;padding:5px 11px;border:1px solid rgba(0,0,0,.16);background:#fff;border-radius:999px;cursor:pointer;color:#1a1a1a}
+.dv-ctl button[data-on="1"]{background:#1a1a1a;border-color:#1a1a1a;color:#fff}
+.dv-card{--ink:#eceada;--ink2:rgba(236,234,218,.80);--muted:rgba(236,234,218,.50);--paper:rgba(10,14,20,.60);--solid:#0b0f15;--rule:rgba(236,234,218,.15);--seal:rgba(212,150,132,.82);--epi:rgba(186,199,220,.74);--stripe:rgba(236,234,218,.10)}
+.dv-card[data-t="day"]{--ink:#1c1e21;--ink2:rgba(28,30,33,.82);--muted:rgba(28,30,33,.48);--paper:rgba(246,243,234,.84);--solid:#f4f0e5;--rule:rgba(28,30,33,.14);--seal:rgba(168,96,76,.78);--epi:rgba(28,30,33,.80);--stripe:rgba(28,30,33,.09)}
+[data-lang="zh"]{display:none}
+[data-l="zh"] [data-lang="zh"]{display:revert}
+[data-l="zh"] [data-lang="en"]{display:none}
+.pg{display:none}
+.pg[data-p="0"]{display:block}
+[data-pg="1"] .pg{display:none}[data-pg="1"] .pg[data-p="1"]{display:block}
+[data-pg="2"] .pg{display:none}[data-pg="2"] .pg[data-p="2"]{display:block}
+[data-pg="3"] .pg{display:none}[data-pg="3"] .pg[data-p="3"]{display:block}
+[data-pg="4"] .pg{display:none}[data-pg="4"] .pg[data-p="4"]{display:block}
+[data-pg="5"] .pg{display:none}[data-pg="5"] .pg[data-p="5"]{display:block}
+.nv{background:transparent;border:0;padding:9px 0;cursor:pointer;font:400 17px 'EB Garamond',serif;color:var(--muted);text-align:left}
+.nv[data-n="0"]{color:var(--ink)}
+[data-pg="1"] .nv{color:var(--muted)}[data-pg="1"] .nv[data-n="1"]{color:var(--ink)}
+[data-pg="2"] .nv{color:var(--muted)}[data-pg="2"] .nv[data-n="2"]{color:var(--ink)}
+[data-pg="3"] .nv{color:var(--muted)}[data-pg="3"] .nv[data-n="3"]{color:var(--ink)}
+[data-pg="4"] .nv{color:var(--muted)}[data-pg="4"] .nv[data-n="4"]{color:var(--ink)}
+[data-pg="5"] .nv{color:var(--muted)}[data-pg="5"] .nv[data-n="5"]{color:var(--ink)}
+.zh{font-family:'Noto Serif SC',serif;font-weight:300}
+.ico{display:block;opacity:.26;transition:opacity .3s,color .3s}
+.ico-sep{font:400 10px ui-monospace,Menlo,monospace;opacity:.38;line-height:1}
+[data-t="day"] .ico-sun{opacity:1;color:var(--ink)}
+[data-t="night"] .ico-moon{opacity:1;color:var(--ink)}
+[data-sty="a"] .opt-b{display:none}
+[data-sty="b"] .opt-a{display:none}
+
+/* ---------- Production shell: full-screen site, both layouts retained ---------- */
+html,body{width:100%;height:100%;overflow:hidden;background:#0b0f15}
+body{overscroll-behavior:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+#dc-root,#dc-root>.sc-host{width:100%;height:100%}
+.dv-turn,.dv-opts,.dv-opt{width:100%;height:100%;margin:0;padding:0;border:0}
+.dv-turn{overflow:hidden}
+.dv-opts{display:block}
+.dv-opt{gap:0}
+.dv-card{width:100%!important;height:100%!important;max-width:none;border:0;border-radius:0;box-shadow:none}
+
+/* Keep the long-scroll layout as the default; STYLE SWITCH toggles the paged layout. */
+[data-sty="a"] .opt-b{display:none}
+[data-sty="b"] .opt-a{display:none}
+
+/* Keyboard accessibility */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--seal,#c8543d);outline-offset:3px}
+
+/* Long-scroll layout on tablets and phones */
+@media (max-width:760px){
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child{
+    padding:14px 16px!important;gap:10px!important;align-items:center!important
+  }
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child>div:first-child{gap:12px!important}
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child>div:first-child>a:not(:first-child){display:none!important}
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child>div:last-child{gap:6px!important}
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child>div:last-child>a{font-size:12px!important}
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child button{padding:4px 7px!important;font-size:9px!important}
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:nth-child(2){height:72vh!important;min-height:520px}
+  .opt-a [style*="margin:0 46px"],
+  .opt-a [style*="margin:34px 46px 0"]{margin-left:14px!important;margin-right:14px!important}
+  .opt-a [style*="padding:60px 66px"]{padding:34px 22px!important}
+  .opt-a [style*="grid-template-columns:1fr 190px"]{grid-template-columns:1fr!important;gap:28px!important}
+  .opt-a [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;gap:28px!important}
+  .opt-a [style*="grid-template-columns:90px 1fr 90px"]{grid-template-columns:48px 1fr 48px!important;gap:10px!important}
+  .opt-a [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:34px!important}
+  .opt-a [style*="right:58px;bottom:68px"]{right:20px!important;left:20px!important;bottom:44px!important;font-size:19px!important}
+
+  /* Paged/booklet layout: retain its identity while fitting narrow screens. */
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]{grid-template-columns:118px minmax(0,1fr)!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child{padding:24px 10px 22px 14px!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child>div:first-child>button:first-child{margin-bottom:24px!important;gap:7px!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child>div:first-child>button:first-child span:last-child{font-size:12px!important}
+  .opt-b .nv{font-size:13px!important;padding:7px 0!important;line-height:1.2!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child>div:last-child{gap:7px!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child>div:last-child>button{font-size:8px!important;padding:4px 6px!important;letter-spacing:.02em!important;max-width:100%;white-space:normal!important;text-align:center!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child>div:last-child>div{gap:4px!important;flex-wrap:wrap!important}
+  .opt-b .pg{padding-left:20px!important;padding-right:18px!important;padding-top:52px!important}
+  .opt-b .pg[data-p="0"]{padding-top:0!important}
+  .opt-b .pg[data-p="0"]>div{right:18px!important;left:18px!important;bottom:52px!important;font-size:17px!important}
+  .opt-b .pg h2{font-size:31px!important;margin-bottom:26px!important}
+  .opt-b .pg[data-p="4"]>div{grid-template-columns:1fr!important;gap:34px!important}
+  .opt-b .pg [style*="grid-template-columns:64px 1fr 78px"]{grid-template-columns:42px minmax(0,1fr)!important;gap:12px!important}
+  .opt-b .pg [style*="grid-template-columns:64px 1fr 78px"]>a{grid-column:2;justify-self:start!important;margin-top:4px}
+}
+@media (max-width:430px){
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child>div:last-child>a{display:none!important}
+  .opt-a .dv-card>div[style*="overflow-y:auto"]>div:first-child>div:last-child>span:first-of-type{display:none!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]{grid-template-columns:102px minmax(0,1fr)!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child{padding-left:10px!important;padding-right:7px!important}
+  .opt-b .dv-card>div[style*="grid-template-columns:246px 1fr"]>div:first-child>div:first-child>button:first-child span:last-child{display:none!important}
+  .opt-b .nv{font-size:12px!important}
+  .opt-b .pg{padding-left:15px!important;padding-right:12px!important}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1" data-sty="{{ sty }}">
+
+
+<div class="dv-opts">
+
+<!-- ============ 1a ============ -->
+<div class="dv-opt opt-a" id="1a">
+
+<div class="dv-card" data-t="{{ theme }}" data-l="{{ lang }}" style="width:100%;height:100%;background:var(--solid)">
+  <canvas ref="{{ refA }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+  <div ref="{{ refSA }}" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+
+    <div style="position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:22px 46px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:linear-gradient(to bottom,var(--paper),transparent)">
+      <div style="display:flex;align-items:center;gap:26px;font:400 13.5px 'EB Garamond',serif;color:var(--muted)">
+        <a href="#1a" onClick="{{ goHomeA }}" aria-label="home" style="display:grid;place-items:center;width:26px;height:22px"><svg viewBox="0 0 28 16" width="26" height="15" fill="var(--seal)" aria-hidden="true" style="display:block;flex:none"><path d="M0.6 5.2C4.4 4.1 8.6 5.9 11.9 9.3C14.4 6.1 18.3 3.6 22.4 3.9C19.2 5.3 16.6 7.7 15.1 10.6C16.6 11.4 18.4 11.5 20 10.9C18.8 12.6 16.6 13.4 14.6 12.9C13.9 13.6 13.3 14.4 12.8 15.3C12.2 14.2 11.4 13.2 10.5 12.3C7.6 9.3 4.2 6.7 0.6 5.2Z"/></svg></a>
+        <a href="#1a" onClick="{{ goResA }}" style="color:var(--muted)"><span data-lang="en">Research</span><span data-lang="zh" class="zh">研究</span></a>
+        <a href="#1a" onClick="{{ goPubA }}" style="color:var(--muted)"><span data-lang="en">Writing</span><span data-lang="zh" class="zh">论文</span></a>
+        <a href="#1a" onClick="{{ goTalkA }}" style="color:var(--muted)"><span data-lang="en">Talks</span><span data-lang="zh" class="zh">讲座</span></a>
+        <a href="#1a" onClick="{{ goNotesA }}" style="color:var(--muted)"><span data-lang="en">Notes</span><span data-lang="zh" class="zh">随笔</span></a>
+        <a href="#1a" onClick="{{ goContactA }}" style="color:var(--muted)"><span data-lang="en">Contact</span><span data-lang="zh" class="zh">联系</span></a>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px">
+        <a href="#1a" onClick="{{ goHomeA }}" style="font:500 15px 'EB Garamond',serif;letter-spacing:.06em;color:var(--ink);white-space:nowrap"><span data-lang="en">LI LINHONG</span><span data-lang="zh" class="zh">李林鸿</span></a>
+        <span style="width:1px;height:14px;background:var(--rule)"></span>
+        <button type="button" onClick="{{ toggleSty }}" aria-label="切换长滚动与分页册页布局" title="切换长滚动 / 分页册页" style="background:none;border:1px solid var(--rule);color:var(--muted);border-radius:999px;padding:4px 11px;font:400 11px ui-monospace,Menlo,monospace;letter-spacing:.09em;white-space:nowrap;cursor:pointer"><span data-lang="en">STYLE SWITCH</span><span data-lang="zh" class="zh" style="letter-spacing:.12em;font-size:11.5px">风格切换</span></button>
+        <button type="button" onClick="{{ toggleLang }}" style="background:none;border:1px solid var(--rule);color:var(--muted);border-radius:999px;padding:4px 10px;font:400 11px ui-monospace,Menlo,monospace;white-space:nowrap;cursor:pointer">EN / 中</button>
+        <button type="button" onClick="{{ toggleTheme }}" aria-label="theme" style="background:none;border:1px solid var(--rule);color:var(--muted);border-radius:999px;padding:4px 10px;display:flex;align-items:center;gap:5px;cursor:pointer"><svg class="ico ico-sun" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.8v2.3M12 18.9v2.3M2.8 12h2.3M18.9 12h2.3M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M18.5 5.5l-1.6 1.6M7.1 16.9l-1.6 1.6"/></svg><span class="ico-sep">/</span><svg class="ico ico-moon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M20.2 14.9A8.6 8.6 0 0 1 9.1 3.8a8.6 8.6 0 1 0 11.1 11.1Z"/></svg></button>
+      </div>
     </div>
-  </header>
 
-  <main>
-    <section class="hero" id="home" style="border-top:none;">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Philosophy · Personal Website</div>
-          <h1>Teah Li</h1>
-          <p class="subtitle">
-            PhD Student in Philosophy. My research focuses on political philosophy,
-            ethics, and modern continental thought.
-          </p>
-          <p class="quote">
-            I am interested in how philosophical ideas illuminate collective life,
-            moral conflict, and the shape of modern subjectivity.
-          </p>
-          <div class="hero-buttons">
-            <a class="btn" href="#research">View Research</a>
-            <a class="btn" href="#contact">Get in Touch</a>
-          </div>
-        </div>
-        <div class="portrait"></div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <h2>About</h2>
-        <p class="section-intro">
-          I am a doctoral researcher in philosophy. My work explores questions in
-          political philosophy, ethics, and social theory. I am especially interested
-          in community, normativity, modernity, and the philosophical interpretation
-          of lived experience.
-        </p>
-        <div class="two-col">
-          <div class="card">
-            <h3>Research Interests</h3>
-            <ul class="clean">
-              <li>Political Philosophy</li>
-              <li>Moral Philosophy / Ethics</li>
-              <li>Phenomenology</li>
-              <li>Social and Critical Theory</li>
-              <li>Modern European Philosophy</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Education</h3>
-            <div class="item">
-              <strong>PhD in Philosophy</strong>
-              <div class="muted">[Your University], [Year–Present]</div>
-            </div>
-            <div class="item">
-              <strong>MA / MPhil / BA</strong>
-              <div class="muted">[Your Previous Institution]</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="research">
-      <div class="container">
-        <h2>Research</h2>
-        <p class="section-intro">
-          My current research asks how philosophical reflection can clarify the tensions
-          between individuality, institutions, and forms of collective life. I am also
-          interested in the relation between abstract theory and concrete experience.
-        </p>
-
-        <div class="card">
-          <div class="item">
-            <strong>Dissertation Project</strong>
-            <div>
-              Add 3–5 sentences here introducing your dissertation topic in plain language.
-              Write this part for non-specialists first.
-            </div>
-          </div>
-
-          <div class="item">
-            <strong>Current Themes</strong>
-            <ul class="clean">
-              <li>Belonging, community, and political identity</li>
-              <li>Moral experience and practical reason</li>
-              <li>Norms, institutions, and social life</li>
-              <li>Philosophy and modernity</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="writing">
-      <div class="container">
-        <h2>Writing</h2>
-        <div class="two-col">
-          <div class="card">
-            <h3>Publications</h3>
-            <div class="item">
-              <strong>Article Title One</strong>
-              <div class="muted">Journal Name, Year</div>
-            </div>
-            <div class="item">
-              <strong>Article Title Two</strong>
-              <div class="muted">Journal Name, Year</div>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Works in Progress</h3>
-            <div class="item">
-              <strong>Working Paper Title</strong>
-              <div class="muted">Short one-sentence description.</div>
-            </div>
-            <div class="item">
-              <strong>Conference Paper</strong>
-              <div class="muted">Short one-sentence description.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="teaching">
-      <div class="container">
-        <h2>Teaching</h2>
-        <p class="section-intro">
-          I teach and assist courses in philosophy with a focus on clear argumentation,
-          close reading, and connecting philosophical ideas to contemporary life.
-        </p>
-
-        <div class="card">
-          <div class="item">
-            <strong>[Course Title]</strong>
-            <div class="muted">Teaching Assistant / Instructor, [Term]</div>
-          </div>
-          <div class="item">
-            <strong>[Course Title]</strong>
-            <div class="muted">Teaching Assistant / Instructor, [Term]</div>
-          </div>
-          <div class="item">
-            <strong>[Course Title]</strong>
-            <div class="muted">Teaching Assistant / Instructor, [Term]</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="cv">
-      <div class="container">
-        <h2>CV</h2>
-        <div class="card">
-          <p>
-            You can add a PDF version of your CV later and link it here.
-          </p>
-          <p>
-            Example: <a href="cv.pdf"><strong>Download CV (PDF)</strong></a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <h2>Contact</h2>
-        <div class="card">
-          <p>Email: yourname@email.com</p>
-          <p>Google Scholar: add link here</p>
-          <p>ORCID: add link here</p>
-          <p>PhilPeople: add link here</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      © 2026 Teah Li
+    <div style="height:774px;position:relative;box-sizing:border-box">
+      <div style="position:absolute;right:58px;bottom:68px;max-width:470px;text-align:right;font:italic 400 23px/1.6 'EB Garamond',serif;color:var(--epi);text-shadow:0 0 20px var(--solid),0 0 7px var(--solid)">Reason is, and ought only to be the slave of the passions.<br><span style="font-style:normal;letter-spacing:.2em;font-size:11.5px;font-family:ui-monospace,Menlo,monospace;color:var(--muted)">DAVID HUME</span></div>
     </div>
-  </footer>
+
+    <div ref="{{ refAbout }}" style="margin:0 46px;padding:60px 66px;background:var(--paper);border:1px solid var(--rule);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 70px -40px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 190px;gap:52px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)">About</div>
+        <p style="margin:0;font:400 18.5px/1.75 'EB Garamond',serif;color:var(--ink2)" data-lang="en">I work on two questions that turn out to be the same question. Do the unobservable things our best theories talk about — electrons, fields, curved spacetime — actually exist, or are they just very good ways of talking? And when a neural network is said to <em>represent</em> something, is there anything there doing the representing?</p>
+        <p style="margin:0;font:400 18.5px/1.75 'EB Garamond',serif;color:var(--ink2)" data-lang="en">Both are questions about credit: how much of the world are we allowed to read off a working instrument. I spend most days reading, arguing with people who disagree with me, and rewriting the same paragraph.</p>
+        <p class="zh" data-lang="zh" style="margin:0;font-size:16.5px;line-height:2;color:var(--ink2)">我做的两个问题，说到底是同一个问题。我们最好的理论谈到的那些看不见的东西——电子、场、弯曲的时空——是真的存在，还是只是一种特别好用的说法？而当人们说一个神经网络「表征」了什么，那个在做表征的东西又在哪里？</p>
+        <p class="zh" data-lang="zh" style="margin:0;font-size:16.5px;line-height:2;color:var(--ink2)">两边问的其实都是同一件事：一台好用的仪器，能让我们读出多少关于世界的东西。剩下的时间我在读书、跟不同意我的人争论、以及反复重写同一段话。</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="aspect-ratio:3/4;background:repeating-linear-gradient(135deg,var(--stripe) 0 2px,transparent 2px 9px);border:1px solid var(--rule);display:grid;place-items:end center;padding-bottom:12px"><span style="font:400 10px ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--muted)">portrait 3:4</span></div>
+        <div style="font:400 13px/1.6 'EB Garamond',serif;color:var(--muted)"><span data-lang="en">PhD student, School of Philosophy<br>Shanxi University, Taiyuan</span><span data-lang="zh" class="zh">山西大学 哲学学院<br>博士研究生 · 太原</span></div>
+        <a href="#1a" style="font:400 13px ui-monospace,Menlo,monospace;letter-spacing:.06em;border-bottom:1px solid var(--seal);align-self:flex-start;padding-bottom:2px">CV ↓</a>
+      </div>
+    </div>
+
+    <div ref="{{ refRes }}" style="margin:34px 46px 0;padding:60px 66px;background:var(--paper);border:1px solid var(--rule);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 70px -40px rgba(0,0,0,.6)">
+      <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:34px">Research</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--rule);padding-top:20px">
+          <div style="font:400 24px/1.25 'EB Garamond',serif;color:var(--ink)"><span data-lang="en">Representation without a representer</span><span data-lang="zh" class="zh" style="font-weight:400">没有表征者的表征</span></div>
+          <p style="margin:0;font:400 15.5px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">Whether the internal states of deep networks are representations in any sense a philosopher should care about — and what interpretability results are actually evidence for.</p>
+          <p style="margin:0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">深度网络的内部状态，在哲学上够得上「表征」吗？可解释性研究给出的，究竟是关于什么的证据？</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--rule);padding-top:20px">
+          <div style="font:400 24px/1.25 'EB Garamond',serif;color:var(--ink)"><span data-lang="en">What survives theory change</span><span data-lang="zh" class="zh" style="font-weight:400">理论更替中留下的东西</span></div>
+          <p style="margin:0;font:400 15.5px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">Selective and structural realism against the pessimistic induction: which posits earn their keep, and whether "approximate truth" does any work at all.</p>
+          <p style="margin:0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">选择性实在论、结构实在论与悲观归纳：哪些理论设定真正立得住，「近似真」这个说法到底做了多少工作。</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--rule);padding-top:20px">
+          <div style="font:400 24px/1.25 'EB Garamond',serif;color:var(--ink)"><span data-lang="en">Instruments that think</span><span data-lang="zh" class="zh" style="font-weight:400">会思考的仪器</span></div>
+          <p style="margin:0;font:400 15.5px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">Machine learning as a new kind of scientific instrument: model-based understanding, opacity, and the epistemology of predictions nobody can follow.</p>
+          <p style="margin:0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">把机器学习当作一种新的科学仪器：基于模型的理解、不透明性，以及无人能跟上的预测背后的认识论。</p>
+        </div>
+      </div>
+    </div>
+
+    <div ref="{{ refPub }}" style="margin:34px 46px 0;padding:60px 66px;background:var(--paper);border:1px solid var(--rule);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 70px -40px rgba(0,0,0,.6)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:30px">
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)">Writing</div>
+        <div style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">2024 — 2026</div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:grid;grid-template-columns:76px 1fr 150px;gap:26px;align-items:baseline;padding:22px 0;border-top:1px solid var(--rule)">
+          <span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">2026</span>
+          <div><div style="font:400 21px/1.35 'EB Garamond',serif;color:var(--ink)">Do Deep Networks Have Representations? Interpretability and the Reference Problem</div><div style="margin-top:6px;font:italic 400 14px 'EB Garamond',serif;color:var(--muted)">Under review</div></div>
+          <a href="#1a" style="font:400 12px ui-monospace,Menlo,monospace;justify-self:end">PDF · ABSTRACT</a>
+        </div>
+        <div style="display:grid;grid-template-columns:76px 1fr 150px;gap:26px;align-items:baseline;padding:22px 0;border-top:1px solid var(--rule)">
+          <span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">2025</span>
+          <div><div style="font:400 21px/1.35 'EB Garamond',serif;color:var(--ink)">Structural Realism and the Unobservables of Machine Learning</div><div style="margin-top:6px;font:italic 400 14px 'EB Garamond',serif;color:var(--muted)">Journal placeholder · vol. 00, 1–24</div></div>
+          <a href="#1a" style="font:400 12px ui-monospace,Menlo,monospace;justify-self:end">PDF · DOI</a>
+        </div>
+        <div style="display:grid;grid-template-columns:76px 1fr 150px;gap:26px;align-items:baseline;padding:22px 0;border-top:1px solid var(--rule)">
+          <span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">2025</span>
+          <div><div style="font:400 21px/1.35 'EB Garamond',serif;color:var(--ink)"><span class="zh" style="font-weight:400">从选择性实在论看机器学习中的不可观察者</span></div><div style="margin-top:6px;font:italic 400 14px 'EB Garamond',serif;color:var(--muted)"><span class="zh" style="font-style:normal">中文期刊占位 · 第 00 期</span></div></div>
+          <a href="#1a" style="font:400 12px ui-monospace,Menlo,monospace;justify-self:end">PDF</a>
+        </div>
+        <div style="display:grid;grid-template-columns:76px 1fr 150px;gap:26px;align-items:baseline;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">draft</span>
+          <div><div style="font:400 21px/1.35 'EB Garamond',serif;color:var(--ink)">Selective Realism after Deep Learning</div><div style="margin-top:6px;font:italic 400 14px 'EB Garamond',serif;color:var(--muted)">Working paper — draft available on request</div></div>
+          <span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted);justify-self:end">IN PROGRESS</span>
+        </div>
+      </div>
+    </div>
+
+    <div ref="{{ refTalk }}" style="margin:34px 46px 0;padding:60px 66px;background:var(--paper);border:1px solid var(--rule);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 70px -40px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 1fr;gap:56px">
+      <div>
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:26px">Talks</div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;gap:20px;align-items:baseline"><span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted);min-width:52px">2026</span><div><div style="font:400 17px/1.4 'EB Garamond',serif;color:var(--ink)">Representation Without a Representer</div><div style="font:italic 400 13.5px 'EB Garamond',serif;color:var(--muted)">Workshop on Philosophy of AI, Beijing</div></div></div>
+          <div style="display:flex;gap:20px;align-items:baseline"><span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted);min-width:52px">2025</span><div><div style="font:400 17px/1.4 'EB Garamond',serif;color:var(--ink)">What Survives Theory Change in ML</div><div style="font:italic 400 13.5px 'EB Garamond',serif;color:var(--muted)">Graduate seminar, Shanxi University</div></div></div>
+          <div style="display:flex;gap:20px;align-items:baseline"><span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted);min-width:52px">2025</span><div><div style="font:400 17px/1.4 'EB Garamond',serif;color:var(--ink)">Are Particles Real? A Reading Group</div><div style="font:italic 400 13.5px 'EB Garamond',serif;color:var(--muted)">Invited comment, Taiyuan</div></div></div>
+        </div>
+      </div>
+      <div ref="{{ refNotes }}">
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:26px">Notes</div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <a href="#1a" style="display:flex;justify-content:space-between;gap:18px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:14px;color:var(--ink)"><span style="font:400 17px/1.4 'EB Garamond',serif"><span data-lang="en">Reading Hume on the inference we cannot justify</span><span data-lang="zh" class="zh">读休谟：那个我们无法证成的推论</span></span><span style="font:400 11px ui-monospace,Menlo,monospace;color:var(--muted);white-space:nowrap">06 · 2026</span></a>
+          <a href="#1a" style="display:flex;justify-content:space-between;gap:18px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:14px;color:var(--ink)"><span style="font:400 17px/1.4 'EB Garamond',serif"><span data-lang="en">Three ways a saliency map can lie to you</span><span data-lang="zh" class="zh">显著性图骗人的三种方式</span></span><span style="font:400 11px ui-monospace,Menlo,monospace;color:var(--muted);white-space:nowrap">04 · 2026</span></a>
+          <a href="#1a" style="display:flex;justify-content:space-between;gap:18px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:14px;color:var(--ink)"><span style="font:400 17px/1.4 'EB Garamond',serif"><span data-lang="en">Notes toward a realism without pictures</span><span data-lang="zh" class="zh">一种不靠图像的实在论</span></span><span style="font:400 11px ui-monospace,Menlo,monospace;color:var(--muted);white-space:nowrap">01 · 2026</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div ref="{{ refContact }}" style="margin:34px 0 0;padding:78px 112px 62px;display:flex;justify-content:space-between;align-items:flex-end;gap:60px">
+      <div>
+        <div style="font:400 40px/1.2 'EB Garamond',serif;color:var(--ink);margin-bottom:20px"><span style="font-family:'Noto Serif SC',serif;font-weight:300">你好</span></div>
+        <div style="display:flex;gap:28px;font:400 13px ui-monospace,Menlo,monospace;letter-spacing:.04em">
+          <a href="#1a">EMAIL</a><a href="#1a">GOOGLE SCHOLAR</a><a href="#1a">ORCID</a><a href="#1a">ARXIV</a><a href="#1a">CV ↓</a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-end;gap:18px">
+        <div style="text-align:right;font:400 11px/1.8 ui-monospace,Menlo,monospace;color:var(--muted)"><span data-lang="en">2026</span><span data-lang="zh" class="zh" style="letter-spacing:.08em">二〇二六</span></div>
+        <div style="display:grid;place-items:center;width:34px;height:24px"><svg viewBox="0 0 28 16" width="34" height="19" fill="var(--seal)" aria-hidden="true" style="display:block;flex:none"><path d="M0.6 5.2C4.4 4.1 8.6 5.9 11.9 9.3C14.4 6.1 18.3 3.6 22.4 3.9C19.2 5.3 16.6 7.7 15.1 10.6C16.6 11.4 18.4 11.5 20 10.9C18.8 12.6 16.6 13.4 14.6 12.9C13.9 13.6 13.3 14.4 12.8 15.3C12.2 14.2 11.4 13.2 10.5 12.3C7.6 9.3 4.2 6.7 0.6 5.2Z"/></svg></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ 1b ============ -->
+<div class="dv-opt opt-b" id="1b">
+
+<div class="dv-card" data-t="{{ theme }}" data-l="{{ lang }}" data-pg="{{ page }}" style="width:100%;height:100%;background:var(--solid)">
+  <canvas ref="{{ refB }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+  <div style="position:absolute;inset:0;display:grid;grid-template-columns:246px 1fr">
+
+    <div style="padding:44px 0 40px 46px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--rule);background:linear-gradient(to bottom,transparent 22%,var(--paper) 84%);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)">
+      <div>
+        <button type="button" onClick="{{ pg0 }}" aria-label="home" style="display:flex;align-items:center;gap:12px;margin-bottom:44px;background:transparent;border:0;padding:0;cursor:pointer;text-align:left">
+          <span style="display:grid;place-items:center;width:30px;height:22px"><svg viewBox="0 0 28 16" width="30" height="17" fill="var(--seal)" aria-hidden="true" style="display:block;flex:none"><path d="M0.6 5.2C4.4 4.1 8.6 5.9 11.9 9.3C14.4 6.1 18.3 3.6 22.4 3.9C19.2 5.3 16.6 7.7 15.1 10.6C16.6 11.4 18.4 11.5 20 10.9C18.8 12.6 16.6 13.4 14.6 12.9C13.9 13.6 13.3 14.4 12.8 15.3C12.2 14.2 11.4 13.2 10.5 12.3C7.6 9.3 4.2 6.7 0.6 5.2Z"/></svg></span>
+          <span style="font:500 15px 'EB Garamond',serif;color:var(--ink)"><span data-lang="en">Li Linhong</span><span data-lang="zh" class="zh">李林鸿</span></span>
+        </button>
+        <div style="display:flex;flex-direction:column;gap:2px;align-items:flex-start">
+          <button class="nv" data-n="0" type="button" onClick="{{ pg0 }}"><span data-lang="en">Home</span><span data-lang="zh" class="zh">首页</span></button>
+          <button class="nv" data-n="1" type="button" onClick="{{ pg1 }}"><span data-lang="en">Research</span><span data-lang="zh" class="zh">研究方向</span></button>
+          <button class="nv" data-n="2" type="button" onClick="{{ pg2 }}"><span data-lang="en">Papers</span><span data-lang="zh" class="zh">论文与发表</span></button>
+          <button class="nv" data-n="3" type="button" onClick="{{ pg3 }}"><span data-lang="en">Working papers</span><span data-lang="zh" class="zh">进行中</span></button>
+          <button class="nv" data-n="4" type="button" onClick="{{ pg4 }}"><span data-lang="en">Talks &amp; notes</span><span data-lang="zh" class="zh">讲座与随笔</span></button>
+          <button class="nv" data-n="5" type="button" onClick="{{ pg5 }}"><span data-lang="en">Contact &amp; CV</span><span data-lang="zh" class="zh">联系与简历</span></button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:11px;align-items:flex-start">
+        <button type="button" onClick="{{ toggleSty }}" aria-label="切换长滚动与分页册页布局" title="切换长滚动 / 分页册页" style="background:none;border:1px solid var(--rule);color:var(--muted);border-radius:999px;padding:4px 11px;font:400 11px ui-monospace,Menlo,monospace;letter-spacing:.09em;white-space:nowrap;cursor:pointer"><span data-lang="en">STYLE SWITCH</span><span data-lang="zh" class="zh" style="letter-spacing:.12em;font-size:11.5px">风格切换</span></button>
+        <div style="display:flex;gap:8px">
+          <button type="button" onClick="{{ toggleLang }}" style="background:none;border:1px solid var(--rule);color:var(--muted);border-radius:999px;padding:5px 11px;font:400 11px ui-monospace,Menlo,monospace;white-space:nowrap;cursor:pointer">EN / 中</button>
+          <button type="button" onClick="{{ toggleTheme }}" aria-label="theme" style="background:none;border:1px solid var(--rule);color:var(--muted);border-radius:999px;padding:4px 10px;display:flex;align-items:center;gap:5px;cursor:pointer"><svg class="ico ico-sun" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.8v2.3M12 18.9v2.3M2.8 12h2.3M18.9 12h2.3M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M18.5 5.5l-1.6 1.6M7.1 16.9l-1.6 1.6"/></svg><span class="ico-sep">/</span><svg class="ico ico-moon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M20.2 14.9A8.6 8.6 0 0 1 9.1 3.8a8.6 8.6 0 1 0 11.1 11.1Z"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden">
+      <div class="pg" data-p="0" style="height:100%;padding:0 92px;box-sizing:border-box;position:relative">
+        <div style="position:absolute;right:50px;bottom:84px;max-width:320px;text-align:right;font:italic 400 22px/1.58 'EB Garamond',serif;color:var(--epi);text-shadow:0 0 20px var(--solid),0 0 7px var(--solid)">Reason is, and ought only to be the slave of the passions.<br><span style="font-style:normal;letter-spacing:.2em;font-size:11px;font-family:ui-monospace,Menlo,monospace;color:var(--muted)">DAVID HUME</span></div>
+      </div>
+
+      <div class="pg" data-p="1" style="height:100%;padding:88px 92px 0;box-sizing:border-box;overflow-y:auto">
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)">Research</div>
+        <h2 style="margin:16px 0 40px;font:400 44px/1.1 'EB Garamond',serif;color:var(--ink)"><span data-lang="en">Three lines of work</span><span data-lang="zh" class="zh" style="font-weight:300">三条线索</span></h2>
+        <div style="display:flex;flex-direction:column;gap:0;max-width:660px">
+          <div style="border-top:1px solid var(--rule);padding:24px 0"><div style="font:400 23px/1.3 'EB Garamond',serif;color:var(--ink);margin-bottom:8px"><span data-lang="en">Representation without a representer</span><span data-lang="zh" class="zh" style="font-weight:400">没有表征者的表征</span></div><p style="margin:0;font:400 15.5px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">Whether the internal states of deep networks are representations in any sense a philosopher should care about, and what interpretability results are evidence for.</p><p style="margin:0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">深度网络的内部状态在哲学上够得上「表征」吗？可解释性研究给出的究竟是关于什么的证据？</p></div>
+          <div style="border-top:1px solid var(--rule);padding:24px 0"><div style="font:400 23px/1.3 'EB Garamond',serif;color:var(--ink);margin-bottom:8px"><span data-lang="en">What survives theory change</span><span data-lang="zh" class="zh" style="font-weight:400">理论更替中留下的东西</span></div><p style="margin:0;font:400 15.5px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">Selective and structural realism against the pessimistic induction: which posits earn their keep, and whether approximate truth does any work.</p><p style="margin:0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">选择性与结构实在论对悲观归纳的回应：哪些理论设定立得住，「近似真」做了多少工作。</p></div>
+          <div style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:24px 0"><div style="font:400 23px/1.3 'EB Garamond',serif;color:var(--ink);margin-bottom:8px"><span data-lang="en">Instruments that think</span><span data-lang="zh" class="zh" style="font-weight:400">会思考的仪器</span></div><p style="margin:0;font:400 15.5px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">Machine learning as a scientific instrument: opacity, model-based understanding, and the epistemology of predictions nobody can follow.</p><p style="margin:0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">把机器学习当作科学仪器：不透明性、基于模型的理解，以及无人能跟上的预测背后的认识论。</p></div>
+        </div>
+      </div>
+
+      <div class="pg" data-p="2" style="height:100%;padding:88px 92px 0;box-sizing:border-box;overflow-y:auto">
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)">Papers</div>
+        <h2 style="margin:16px 0 36px;font:400 44px/1.1 'EB Garamond',serif;color:var(--ink)"><span data-lang="en">Published &amp; under review</span><span data-lang="zh" class="zh" style="font-weight:300">发表与审阅中</span></h2>
+        <div style="max-width:700px">
+          <div style="display:grid;grid-template-columns:64px 1fr 78px;gap:22px;align-items:baseline;padding:20px 0;border-top:1px solid var(--rule)"><span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">2026</span><div><div style="font:400 19px/1.35 'EB Garamond',serif;color:var(--ink)">Do Deep Networks Have Representations? Interpretability and the Reference Problem</div><div style="margin-top:5px;font:italic 400 13.5px 'EB Garamond',serif;color:var(--muted)">Under review</div></div><a href="#1b" style="font:400 11.5px ui-monospace,Menlo,monospace;justify-self:end">PDF</a></div>
+          <div style="display:grid;grid-template-columns:64px 1fr 78px;gap:22px;align-items:baseline;padding:20px 0;border-top:1px solid var(--rule)"><span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">2025</span><div><div style="font:400 19px/1.35 'EB Garamond',serif;color:var(--ink)">Structural Realism and the Unobservables of Machine Learning</div><div style="margin-top:5px;font:italic 400 13.5px 'EB Garamond',serif;color:var(--muted)">Journal placeholder · vol. 00, 1–24</div></div><a href="#1b" style="font:400 11.5px ui-monospace,Menlo,monospace;justify-self:end">DOI</a></div>
+          <div style="display:grid;grid-template-columns:64px 1fr 78px;gap:22px;align-items:baseline;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="font:400 12px ui-monospace,Menlo,monospace;color:var(--muted)">2025</span><div><div style="font:400 19px/1.35 'EB Garamond',serif;color:var(--ink)"><span class="zh" style="font-weight:400">从选择性实在论看机器学习中的不可观察者</span></div><div style="margin-top:5px;font:400 13.5px 'EB Garamond',serif;color:var(--muted)"><span class="zh">中文期刊占位 · 第 00 期</span></div></div><a href="#1b" style="font:400 11.5px ui-monospace,Menlo,monospace;justify-self:end">PDF</a></div>
+        </div>
+      </div>
+
+      <div class="pg" data-p="3" style="height:100%;padding:88px 92px 0;box-sizing:border-box;overflow-y:auto">
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)">Working papers</div>
+        <h2 style="margin:16px 0 36px;font:400 44px/1.1 'EB Garamond',serif;color:var(--ink)"><span data-lang="en">Unfinished, on purpose</span><span data-lang="zh" class="zh" style="font-weight:300">尚未完成的</span></h2>
+        <div style="display:flex;flex-direction:column;gap:26px;max-width:640px">
+          <div style="background:var(--paper);border:1px solid var(--rule);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:26px 30px"><div style="font:400 20px/1.35 'EB Garamond',serif;color:var(--ink)">Selective Realism after Deep Learning</div><p style="margin:10px 0 0;font:400 15px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">If the parts of a theory we should believe are the parts doing the predictive work, what happens when the predictive work is done by something we cannot read?</p><p style="margin:10px 0 0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">如果理论中值得相信的部分，正是承担预测工作的部分，那么当预测工作由我们读不懂的东西完成时，会发生什么？</p><div style="margin-top:14px;font:400 11px ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--muted)">DRAFT · AVAILABLE ON REQUEST</div></div>
+          <div style="background:var(--paper);border:1px solid var(--rule);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:26px 30px"><div style="font:400 20px/1.35 'EB Garamond',serif;color:var(--ink)">The Instrument Argument</div><p style="margin:10px 0 0;font:400 15px/1.7 'EB Garamond',serif;color:var(--ink2)" data-lang="en">A reconstruction of the no-miracles argument for the case where the miracle is performed by a trained model rather than a theory.</p><p style="margin:10px 0 0;font-size:14.5px;line-height:1.95;color:var(--ink2)" class="zh" data-lang="zh">重构「无奇迹论证」：当奇迹由一个训练好的模型而非一套理论完成时。</p><div style="margin-top:14px;font:400 11px ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--muted)">EARLY NOTES</div></div>
+        </div>
+      </div>
+
+      <div class="pg" data-p="4" style="height:100%;padding:88px 92px 0;box-sizing:border-box;overflow-y:auto">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:760px">
+          <div>
+            <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:24px">Talks</div>
+            <div style="display:flex;flex-direction:column;gap:20px">
+              <div><div style="font:400 17px/1.4 'EB Garamond',serif;color:var(--ink)">Representation Without a Representer</div><div style="font:italic 400 13px 'EB Garamond',serif;color:var(--muted)">Workshop on Philosophy of AI, Beijing · 2026</div></div>
+              <div><div style="font:400 17px/1.4 'EB Garamond',serif;color:var(--ink)">What Survives Theory Change in ML</div><div style="font:italic 400 13px 'EB Garamond',serif;color:var(--muted)">Graduate seminar, Shanxi University · 2025</div></div>
+              <div><div style="font:400 17px/1.4 'EB Garamond',serif;color:var(--ink)">Are Particles Real? A Reading Group</div><div style="font:italic 400 13px 'EB Garamond',serif;color:var(--muted)">Invited comment, Taiyuan · 2025</div></div>
+            </div>
+          </div>
+          <div>
+            <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:24px">Notes</div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <a href="#1b" style="display:block;border-bottom:1px solid var(--rule);padding-bottom:13px;color:var(--ink);font:400 16px/1.45 'EB Garamond',serif"><span data-lang="en">Reading Hume on the inference we cannot justify</span><span data-lang="zh" class="zh">读休谟：那个我们无法证成的推论</span><span style="display:block;font:400 10.5px ui-monospace,Menlo,monospace;color:var(--muted);margin-top:5px">06 · 2026</span></a>
+              <a href="#1b" style="display:block;border-bottom:1px solid var(--rule);padding-bottom:13px;color:var(--ink);font:400 16px/1.45 'EB Garamond',serif"><span data-lang="en">Three ways a saliency map can lie to you</span><span data-lang="zh" class="zh">显著性图骗人的三种方式</span><span style="display:block;font:400 10.5px ui-monospace,Menlo,monospace;color:var(--muted);margin-top:5px">04 · 2026</span></a>
+              <a href="#1b" style="display:block;border-bottom:1px solid var(--rule);padding-bottom:13px;color:var(--ink);font:400 16px/1.45 'EB Garamond',serif"><span data-lang="en">Notes toward a realism without pictures</span><span data-lang="zh" class="zh">一种不靠图像的实在论</span><span style="display:block;font:400 10.5px ui-monospace,Menlo,monospace;color:var(--muted);margin-top:5px">01 · 2026</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pg" data-p="5" style="height:100%;padding:130px 92px 0;box-sizing:border-box">
+        <div style="font:500 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)">Contact</div>
+        <h2 style="margin:16px 0 30px;font:300 54px/1.05 'Noto Serif SC',serif;color:var(--ink)">你好</h2>
+        <div style="display:flex;flex-direction:column;gap:14px;font:400 14px ui-monospace,Menlo,monospace;letter-spacing:.04em;align-items:flex-start">
+          <a href="#1b">EMAIL</a><a href="#1b">GOOGLE SCHOLAR</a><a href="#1b">ORCID</a><a href="#1b">ARXIV</a>
+          <a href="#1b" style="margin-top:10px;border:1px solid var(--seal);padding:11px 22px;border-radius:999px">DOWNLOAD CV ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;zh&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'zh'&quot;,&quot;section&quot;:&quot;Site&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;night&quot;,&quot;day&quot;],&quot;default&quot;:&quot;night&quot;,&quot;tsType&quot;:&quot;'night'|'day'&quot;,&quot;section&quot;:&quot;Site&quot;},&quot;motionIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:35,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Background&quot;},&quot;boatTrim&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:-8,&quot;max&quot;:8,&quot;step&quot;:1,&quot;unit&quot;:&quot;°&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scene&quot;}}">
+const rnd = (s) => () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296;
+const STAR_COLS = ['205,222,255', '240,244,255', '255,224,178', '168,238,255'];
+
+class Component extends DCLogic {
+  state = { lang: null, theme: null, motion: null, page: 0, sty: 'a' };
+
+  get lang() { return this.state.lang ?? this.props.lang ?? 'en'; }
+  get theme() { return this.state.theme ?? this.props.theme ?? 'night'; }
+  get motion() { return (this.state.motion ?? this.props.motionIntensity ?? 35) / 100; }
+
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.scenes = [];
+    this.t0 = performance.now(); this.tp = this.t0;
+    this.loadArt();
+    if (typeof IntersectionObserver !== 'undefined') {
+      this.io = new IntersectionObserver((es) => es.forEach((en) => {
+        const s = (this.scenes || []).find((x) => x.canvas === en.target);
+        if (s) s.vis = en.isIntersecting;
+      }), { rootMargin: '150px' });
+    }
+    this.tick = this.tick.bind(this);
+    this.raf = requestAnimationFrame(this.tick);
+    this.onRz = () => this.scenes.forEach((s) => this.size(s));
+    window.addEventListener('resize', this.onRz);
+  }
+
+  componentWillUnmount() { cancelAnimationFrame(this.raf); window.removeEventListener('resize', this.onRz); if (this.io) this.io.disconnect(); }
+
+  componentDidUpdate() {
+    if (!this.scenes) return;
+    const b = this.scenes.find((s) => s.k === 'b');
+    if (b) b.pT = this.state.page / 5;
+  }
+
+  sync() {
+    const defs = [['a', this.cA, this.sA], ['b', this.cB, null]];
+    defs.forEach(([k, cv, host]) => {
+      if (!cv || !cv.isConnected) return;
+      const i = this.scenes.findIndex(x => x.k === k);
+      const s = i < 0 ? null : this.scenes[i];
+      if (s && s.canvas === cv) {
+        if (cv.clientWidth && Math.abs(cv.clientWidth - s.w) > 2) this.size(s);
+        return;
+      }
+      if (i >= 0) this.scenes.splice(i, 1);
+      this.scenes.push(this.mkScene(k, cv, host || cv.parentNode));
+    });
+    const el = this.sA;
+    if (el && !el.__scBound) {
+      el.__scBound = 1;
+      el.addEventListener('scroll', () => {
+        const sc = this.scenes.find(s => s.k === 'a');
+        if (sc) sc.p = Math.min(1, el.scrollTop / Math.max(1, el.scrollHeight - el.clientHeight) * 1.35);
+      }, { passive: true });
+    }
+  }
+
+  mkScene(k, canvas, host) {
+    const s = { k, canvas, ctx: canvas.getContext('2d'), host, p: 0, pT: 0, mx: -9e3, my: -9e3, parts: [], mt: [], vis: true, theme: null, dpr: Math.min(1.6, window.devicePixelRatio || 1) };
+    this.size(s);
+    if (this.io) this.io.observe(canvas);
+    if (host.__ptBound) { host.__ptScene = s; return s; }
+    host.__ptBound = 1; host.__ptScene = s;
+    host.addEventListener('pointermove', (e) => {
+      const sc = host.__ptScene; if (!sc) return;
+      const r = sc.canvas.getBoundingClientRect();
+      sc.mx = e.clientX - r.left; sc.my = e.clientY - r.top;
+    }, { passive: true });
+    host.addEventListener('pointerleave', () => { const sc = host.__ptScene; if (sc) { sc.mx = -9e3; sc.my = -9e3; } }, { passive: true });
+    return s;
+  }
+
+  size(s) {
+    const w = s.canvas.clientWidth || 1180, h = s.canvas.clientHeight || 840;
+    s.w = w; s.h = h;
+    s.canvas.width = Math.round(w * s.dpr); s.canvas.height = Math.round(h * s.dpr);
+    s.ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+    this.build(s); this.ink(s);
+  }
+
+  cfg(k) {
+    return k === 'a'
+      ? { dwMul: 1.0, top: 0.455, gap: 0.50, cxT: 0.50, boat: [0.47, 0.856, 1.9], gal: [0.70, 0.155, 0.28] }
+      : { dwMul: 1.38, top: 0.555, gap: 0.50, cxT: 0.615, boat: [0.56, 0.848, 1.78], gal: [0.79, 0.145, 0.24] };
+  }
+
+  loadArt() {
+    const get = (src) => new Promise((res) => {
+      const im = new Image();
+      im.onload = () => res(im);
+      im.onerror = () => res(null);
+      im.src = src;
+    });
+    Promise.all([get('assets/ink-canyon.jpg'), get('assets/galaxy.jpg'), get('assets/boat-ink.png')]).then(([ink, gal, bt]) => {
+      this.artInk = ink; this.artGal = gal;
+      if (bt) { try { this.buildBoat(bt); } catch (e) { console.error('[boat]', e); } }
+      if (ink) this.buildSample(ink);
+      (this.scenes || []).forEach((s) => this.size(s));
+    });
+  }
+
+  buildSample(im) {
+    const SW = 128, SH = Math.round(SW * im.height / im.width);
+    const cv = document.createElement('canvas');
+    cv.width = SW; cv.height = SH;
+    const c = cv.getContext('2d');
+    c.drawImage(im, 0, 0, SW, SH);
+    let d;
+    try { d = c.getImageData(0, 0, SW, SH).data; } catch (e) { this.sample = null; return; }
+    const pts = [];
+    for (let y = 1; y < SH - 1; y++) {
+      for (let x = 1; x < SW - 1; x++) {
+        const i = (y * SW + x) * 4;
+        const l = d[i] * 0.3 + d[i + 1] * 0.59 + d[i + 2] * 0.11;
+        const r = (d[i + 4] * 0.3 + d[i + 5] * 0.59 + d[i + 6] * 0.11);
+        const b = (d[i + SW * 4] * 0.3 + d[i + SW * 4 + 1] * 0.59 + d[i + SW * 4 + 2] * 0.11);
+        const edge = Math.abs(l - r) + Math.abs(l - b);
+        if (edge > 26 || (l < 120 && l > 30 && Math.random() < 0.25)) pts.push([x / SW, y / SH]);
+      }
+    }
+    this.sample = pts;
+  }
+
+  build(s) {
+    const { w, h } = s, cf = this.cfg(s.k), R = rnd(s.k.charCodeAt(0) * 7919 + 13);
+    const dw = w * cf.dwMul, dh = dw * 1308 / 736;
+    const dx = w * cf.cxT - cf.gap * dw, dy = -cf.top * dh;
+    s.im = { dx, dy, dw, dh };
+    s.cx = w * cf.cxT;
+    s.baseY = dy + 0.79 * dh;
+    s.gal = { x: w * cf.gal[0], y: h * cf.gal[1], r: w * cf.gal[2] };
+    const uv = (this.sample || []).filter((p) => {
+      const y = dy + p[1] * dh, x = dx + p[0] * dw;
+      return y > -20 && y < h + 20 && x > -20 && x < w + 20;
+    });
+    const n = Math.min(1650, Math.round(w * h / 880));
+    s.parts = [];
+    const bx0 = s.cx - w * 0.20, by0 = h * 0.02, bx1 = s.cx + w * 0.20, by1 = h * 0.52;
+    for (let i = 0; i < n; i++) {
+      let ix, iy;
+      if (uv.length) {
+        const p = uv[Math.floor(R() * uv.length)];
+        ix = dx + p[0] * dw + (R() - 0.5) * 5;
+        iy = dy + p[1] * dh + (R() - 0.5) * 5;
+      } else { ix = R() * w; iy = h * (0.25 + R() * 0.55); }
+      let sx, sy;
+      if (R() < 0.42) {
+        const u = R();
+        sx = bx0 + (bx1 - bx0) * u + (R() + R() + R() - 1.5) / 1.5 * w * 0.10;
+        sy = by0 + (by1 - by0) * u + (R() + R() + R() - 1.5) / 1.5 * h * 0.07;
+      } else { sx = R() * w; sy = Math.pow(R(), 1.2) * h * 0.74; }
+      sx = Math.min(w - 2, Math.max(2, sx)); sy = Math.max(4, sy);
+      s.parts.push({
+        ix, iy, sx, sy, x: ix, y: iy, vx: 0, vy: 0,
+        r: 0.7 + Math.pow(R(), 2.4) * 2.1,
+        f1: 0.18 + R() * 0.5, f2: 0.16 + R() * 0.5, f3: 0.5 + R() * 2.2, ph: R() * 6.28,
+        col: STAR_COLS[Math.floor(Math.pow(R(), 1.5) * 4)],
+        dv: 0.35 + R() * 1.15, glint: R() < 0.05, big: R() < 0.028
+      });
+    }
+  }
+
+  ink(s) {
+    const night = this.theme === 'night';
+    s.theme = this.theme;
+    const { w, h } = s, im = s.im;
+    const o = s.ink0 || (s.ink0 = document.createElement('canvas'));
+    o.width = Math.round(w * s.dpr); o.height = Math.round(h * s.dpr);
+    const c = o.getContext('2d');
+    c.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+    c.clearRect(0, 0, w, h);
+    if (this.artInk) {
+      c.save();
+      c.filter = night ? 'grayscale(1) contrast(.90) brightness(1.12)' : 'grayscale(1) contrast(.80) brightness(1.10)';
+      c.drawImage(this.artInk, im.dx, im.dy, im.dw, im.dh);
+      c.filter = 'none';
+      c.globalCompositeOperation = 'lighten';
+      c.fillStyle = night ? 'rgb(58,64,78)' : 'rgb(102,104,106)';
+      c.fillRect(0, 0, w, h);
+      c.restore();
+    } else {
+      c.fillStyle = night ? '#0a1018' : '#f4f0e5';
+      c.fillRect(0, 0, w, h);
+    }
+
+    const sk = s.sky0 || (s.sky0 = document.createElement('canvas'));
+    sk.width = Math.round(w * s.dpr); sk.height = Math.round(h * s.dpr);
+    const k2 = sk.getContext('2d');
+    k2.setTransform(s.dpr, 0, 0, s.dpr, 0, 0); k2.clearRect(0, 0, w, h);
+    if (night) {
+      const Q = rnd(311 + s.k.charCodeAt(0) * 31);
+      const cx = s.cx;
+      const bx0 = cx - w * 0.20, by0 = h * 0.01, bx1 = cx + w * 0.22, by1 = h * 0.56;
+      const nS = Math.round(w * h / 620);
+      for (let i = 0; i < nS; i++) {
+        let x2, y2;
+        if (Q() < 0.40) {
+          const u = Q();
+          x2 = bx0 + (bx1 - bx0) * u + (Q() + Q() + Q() - 1.5) / 1.5 * w * 0.075;
+          y2 = by0 + (by1 - by0) * u + (Q() + Q() + Q() - 1.5) / 1.5 * h * 0.05;
+        } else { x2 = Q() * w; y2 = Math.pow(Q(), 1.1) * h * 0.92; }
+        const rr = 0.5 + Math.pow(Q(), 2.4) * 2;
+        k2.fillStyle = 'rgba(' + STAR_COLS[Math.floor(Math.pow(Q(), 1.6) * 4)] + ',' + (0.18 + Math.pow(Q(), 2) * 0.72).toFixed(3) + ')';
+        k2.fillRect(x2 - rr / 2, y2 - rr / 2, rr, rr);
+      }
+      for (let i = 0; i < 15; i++) {
+        const x2 = Q() * w, y2 = Q() * h * 0.6, rr = 0.9 + Q() * 1.6, colr = STAR_COLS[Math.floor(Q() * 4)];
+        const a2 = 0.55 + Q() * 0.4;
+        const g3 = k2.createRadialGradient(x2, y2, 0, x2, y2, rr * 7);
+        g3.addColorStop(0, 'rgba(' + colr + ',' + (a2 * 0.5).toFixed(2) + ')'); g3.addColorStop(1, 'rgba(' + colr + ',0)');
+        k2.fillStyle = g3; k2.beginPath(); k2.arc(x2, y2, rr * 7, 0, 6.3); k2.fill();
+        k2.strokeStyle = 'rgba(' + colr + ',' + (a2 * 0.75).toFixed(2) + ')'; k2.lineWidth = 0.75;
+        const sp = rr * (4.5 + Q() * 4);
+        k2.beginPath(); k2.moveTo(x2 - sp, y2); k2.lineTo(x2 + sp, y2); k2.moveTo(x2, y2 - sp); k2.lineTo(x2, y2 + sp); k2.stroke();
+        k2.fillStyle = 'rgba(255,255,255,' + a2.toFixed(2) + ')'; k2.beginPath(); k2.arc(x2, y2, rr, 0, 6.3); k2.fill();
+      }
+    }
+
+    const gl = s.gal0 || (s.gal0 = document.createElement('canvas'));
+    const gr = Math.round(s.gal.r * 2 * s.dpr);
+    gl.width = gr; gl.height = gr;
+    const k3 = gl.getContext('2d');
+    k3.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+    k3.clearRect(0, 0, s.gal.r * 2, s.gal.r * 2);
+    if (night && this.artGal) {
+      const R2 = s.gal.r, src = this.artGal;
+      const sSide = Math.min(src.width, src.height);
+      k3.save();
+      k3.filter = 'brightness(1.05) contrast(1.25) saturate(.85)';
+      k3.drawImage(src, (src.width - sSide) / 2, src.height * 0.28, sSide, sSide, 0, 0, R2 * 2, R2 * 2);
+      k3.restore();
+      k3.globalCompositeOperation = 'destination-in';
+      const mg = k3.createRadialGradient(R2, R2, 0, R2, R2, R2);
+      mg.addColorStop(0, 'rgba(0,0,0,1)');
+      mg.addColorStop(0.45, 'rgba(0,0,0,.80)');
+      mg.addColorStop(0.78, 'rgba(0,0,0,.20)');
+      mg.addColorStop(1, 'rgba(0,0,0,0)');
+      k3.fillStyle = mg; k3.fillRect(0, 0, R2 * 2, R2 * 2);
+      k3.globalCompositeOperation = 'source-over';
+    }
+  }
+
+  buildBoat(src) {
+    // the source painting is mirrored about its own water line (y≈130): keep the hull only,
+    // the reflection is re-cast at draw time so it stays flat on the water at any heading.
+    const S = 2, CUT = 131, W = src.width * S, H = CUT * S;
+    const o = document.createElement('canvas'); o.width = W; o.height = H;
+    const c = o.getContext('2d');
+    c.drawImage(src, 0, 0, src.width * S, src.height * S);
+    const id = c.getImageData(0, 0, W, H), px = id.data;
+    const cxp = 148 * S, cyp = 84 * S, rx = 152 * S, ry = 96 * S;
+    for (let i = 0; i < px.length; i += 4) {
+      const p = i >> 2, x = p % W, y = (p - x) / W;
+      const lum = 0.3 * px[i] + 0.59 * px[i + 1] + 0.11 * px[i + 2];
+      let a = 1 - lum / 206;
+      a = a > 0 ? Math.pow(a < 1 ? a : 1, 0.85) : 0;
+      const u = (x - cxp) / rx, v = (y - cyp) / ry, dd = Math.sqrt(u * u + v * v);
+      if (dd > 1) a = 0; else if (dd > 0.7) a *= 1 - (dd - 0.7) / 0.3;
+      if (y > (CUT - 7) * S) a *= (CUT * S - y) / (7 * S);
+      px[i] = px[i + 1] = px[i + 2] = 255;
+      px[i + 3] = (a * 255) | 0;
+    }
+    c.putImageData(id, 0, 0);
+    const tint = (col) => {
+      const t2 = document.createElement('canvas'); t2.width = W; t2.height = H;
+      const k = t2.getContext('2d');
+      k.drawImage(o, 0, 0);
+      k.globalCompositeOperation = 'source-in';
+      k.fillStyle = col; k.fillRect(0, 0, W, H);
+      return t2;
+    };
+    // night: the hull is ink-black like the mountains; legibility comes from a moonlit top rim,
+    // built here by erasing the silhouette offset downwards out of a pale copy.
+    const rim = document.createElement('canvas'); rim.width = W; rim.height = H;
+    const rk = rim.getContext('2d');
+    rk.drawImage(tint('#c3d4ea'), 0, 0);
+    rk.globalCompositeOperation = 'destination-out';
+    rk.drawImage(o, 1.2 * S, 3.2 * S);
+    this.boatArt = { day: tint('#1b2028'), nDark: tint('#465877'), nRim: rim, w: src.width, h: CUT };
+  }
+
+  boat(c, x, y, k, night, M, t) {
+    const art = this.boatArt;
+    if (!art) return;
+    const f = k * 0.31;
+    const trim = -(this.props.boatTrim ?? 3) * Math.PI / 180;
+    const put = (sp, mir) => {
+      c.save();
+      c.translate(x, y);
+      if (M) c.translate(0, Math.sin(t * 0.62) * 1.1 * M);
+      c.scale(1, mir ? -0.44 : 0.82);           // world foreshortening / reflection squash
+      if (M) c.rotate(Math.sin(t * 0.8) * 0.01 * M);
+      c.rotate(trim);
+      c.scale(f, f);
+      c.translate(-148, -art.h * 0.9);
+      c.drawImage(sp, 0, 0, sp.width, sp.height, 0, 0, art.w, art.h);
+      c.restore();
+    };
+    c.save();
+    c.filter = 'blur(1.4px)';
+    if (night) {
+      c.globalCompositeOperation = 'multiply';
+      c.globalAlpha *= 0.55; put(art.nDark, true);
+    } else { c.globalAlpha *= 0.2; put(art.day, true); }
+    c.restore();
+    c.save();
+    if (night) {
+      c.globalCompositeOperation = 'multiply';
+      put(art.nDark, false);
+      c.globalCompositeOperation = 'source-over';
+      c.globalAlpha *= 0.55; put(art.nRim, false);
+    } else put(art.day, false);
+    c.restore();
+  }
+
+  tick() {
+    const now = performance.now();
+    const t = (now - this.t0) / 1000;
+    const dt = Math.min(0.05, (now - (this.tp || now)) / 1000) || 0.016;
+    this.tp = now;
+    const night = this.theme === 'night';
+    const M = this.reduced ? 0 : this.motion;
+    try { this.sync(); } catch (e) { if (!this.syncWarned) { this.syncWarned = 1; console.error('[sync]', e); } }
+    (this.scenes || []).forEach((s) => {
+      try {
+        if (!s.mt) s.mt = [];
+        if (s.theme !== this.theme) this.ink(s);
+        if (s.k === 'b') s.p += ((s.pT || 0) - s.p) * 0.06;
+        if (s.vis === false) return;
+        this.frame(s, t, dt, night, M);
+      } catch (err) {
+        s.err = String(err && err.stack || err).slice(0, 400);
+        if (!s.warned) { s.warned = 1; console.error('[ink scene ' + s.k + ']', err); }
+      }
+    });
+    this.raf = requestAnimationFrame(this.tick);
+  }
+
+  frame(s, t, dt, night, M) {
+    const c = s.ctx, w = s.w, h = s.h, p = Math.max(0, Math.min(1, s.p));
+    const e = p * p * (3 - 2 * p);
+    const g = c.createLinearGradient(0, 0, 0, h);
+    if (night) { g.addColorStop(0, '#0b1120'); g.addColorStop(0.5, '#101a2e'); g.addColorStop(1, '#0d1524'); }
+    else { g.addColorStop(0, '#f7f4ea'); g.addColorStop(0.62, '#f3efe4'); g.addColorStop(1, '#ebe6d8'); }
+    c.fillStyle = g; c.fillRect(0, 0, w, h);
+
+    if (night) {
+      const ng = c.createLinearGradient(w * 0.1, 0, w * 0.85, h * 0.7);
+      ng.addColorStop(0, 'rgba(58,80,116,0)');
+      ng.addColorStop(0.45, 'rgba(64,88,124,' + (0.05 + 0.10 * e).toFixed(3) + ')');
+      ng.addColorStop(1, 'rgba(40,58,88,0)');
+      c.fillStyle = ng; c.fillRect(0, 0, w, h);
+      if (s.gal0 && s.gal) {
+        const dr = 3 * Math.sin(t * 0.05);
+        c.save();
+        c.globalCompositeOperation = 'screen';
+        c.globalAlpha = 0.62 + 0.24 * e;
+        c.drawImage(s.gal0, s.gal.x - s.gal.r + dr, s.gal.y - s.gal.r + dr * 0.4, s.gal.r * 2, s.gal.r * 2);
+        c.restore();
+      }
+      if (s.sky0) {
+        const off = ((t * (3 + 14 * M)) % w + w) % w;
+        c.globalAlpha = 0.6 + 0.4 * e;
+        c.drawImage(s.sky0, off, 0, w, h);
+        c.drawImage(s.sky0, off - w, 0, w, h);
+        c.globalAlpha = 1;
+      }
+      if (!this.reduced) {
+        if (s.mt.length < 3 && Math.random() < dt * (0.10 + M * 0.35)) {
+          s.mt.push({ x: w * (0.08 + Math.random() * 0.84), y: h * Math.random() * 0.30, ang: 1.87 + (Math.random() - 0.5) * 0.5, v: 240 + Math.random() * 260, len: 70 + Math.random() * 150, life: 0, dur: 0.9 + Math.random() * 0.8 });
+        }
+        for (let i = s.mt.length - 1; i >= 0; i--) {
+          const m2 = s.mt[i]; m2.life += dt;
+          m2.x += Math.cos(m2.ang) * m2.v * dt; m2.y += Math.sin(m2.ang) * m2.v * dt;
+          if (m2.life > m2.dur || m2.y > s.baseY - 8) { s.mt.splice(i, 1); continue; }
+          const fa = Math.sin(3.14 * m2.life / m2.dur) * (0.65 + 0.3 * e);
+          const tx2 = m2.x - Math.cos(m2.ang) * m2.len, ty2 = m2.y - Math.sin(m2.ang) * m2.len;
+          const lg = c.createLinearGradient(m2.x, m2.y, tx2, ty2);
+          lg.addColorStop(0, 'rgba(235,242,255,' + fa.toFixed(3) + ')'); lg.addColorStop(1, 'rgba(235,242,255,0)');
+          c.strokeStyle = lg; c.lineWidth = 1.4; c.lineCap = 'round';
+          c.beginPath(); c.moveTo(m2.x, m2.y); c.lineTo(tx2, ty2); c.stroke();
+          c.fillStyle = 'rgba(255,255,255,' + fa.toFixed(3) + ')';
+          c.beginPath(); c.arc(m2.x, m2.y, 1.3, 0, 6.3); c.fill();
+        }
+      }
+    }
+
+    if (night) {
+      const mgl = c.createRadialGradient(s.cx, h * 0.52, 0, s.cx, h * 0.52, w * 0.42);
+      mgl.addColorStop(0, 'rgba(150,178,220,' + (0.30 - 0.16 * e).toFixed(3) + ')');
+      mgl.addColorStop(0.55, 'rgba(130,158,205,' + (0.14 - 0.07 * e).toFixed(3) + ')');
+      mgl.addColorStop(1, 'rgba(120,150,200,0)');
+      c.fillStyle = mgl; c.fillRect(0, 0, w, h);
+    }
+
+    const inkA = 1 - 0.78 * e;
+    c.save();
+    c.globalCompositeOperation = 'multiply';
+    c.globalAlpha = inkA;
+    c.drawImage(s.ink0, 0, 0, w, h);
+    c.restore();
+
+    if (night) {
+      const air = c.createLinearGradient(0, 0, 0, h);
+      air.addColorStop(0, 'rgba(74,100,150,' + (0.10 * inkA).toFixed(3) + ')');
+      air.addColorStop(0.55, 'rgba(80,104,152,' + (0.17 * inkA).toFixed(3) + ')');
+      air.addColorStop(1, 'rgba(60,84,132,' + (0.09 * inkA).toFixed(3) + ')');
+      c.save(); c.globalCompositeOperation = 'screen'; c.fillStyle = air; c.fillRect(0, 0, w, h); c.restore();
+    }
+
+    if (night) {
+      const wY = s.baseY;
+      const glow = c.createLinearGradient(0, wY - h * 0.10, 0, wY + h * 0.05);
+      glow.addColorStop(0, 'rgba(150,180,225,0)');
+      glow.addColorStop(0.6, 'rgba(150,180,225,' + (0.07 * inkA).toFixed(3) + ')');
+      glow.addColorStop(1, 'rgba(150,180,225,0)');
+      c.fillStyle = glow; c.fillRect(0, wY - h * 0.10, w, h * 0.15);
+      const Rf = rnd(909 + s.k.charCodeAt(0));
+      for (let i = 0; i < 26; i++) {
+        const y = wY + 4 + Math.pow(Rf(), 1.3) * (h - wY) * 0.92;
+        const sx = s.gal.x + (Rf() - 0.5) * (w * 0.10 + (y - wY) * 0.5);
+        const ln = 4 + Rf() * 26;
+        const fl = 0.5 + 0.5 * Math.sin(t * (0.5 + Rf() * 1.4) + i);
+        c.fillStyle = 'rgba(206,224,250,' + (0.06 + Rf() * 0.16 * fl).toFixed(3) + ')';
+        c.fillRect(sx - ln / 2, y, ln, 1.1);
+      }
+    }
+
+    if (inkA > 0.03) {
+      const cf = this.cfg(s.k);
+      c.globalAlpha = Math.min(1, inkA * 1.25);
+      this.boat(c, w * cf.boat[0], h * cf.boat[1], cf.boat[2] * Math.max(0.7, Math.min(1.6, w / 1180)), night, M, t + (s.k === 'b' ? 3.1 : 0));
+    }
+    c.globalAlpha = 1;
+
+    const base = night ? 0.95 : 0.62;
+    const drift = night ? t * (5 + 20 * M) : 0;
+    for (let i = 0; i < s.parts.length; i++) {
+      const q = s.parts[i];
+      let tsx = q.sx, tsy = q.sy;
+      if (night) {
+        tsx = (q.sx + drift * q.dv) % w; if (tsx < 0) tsx += w;
+        tsy = q.sy + Math.sin(t * 0.05 + q.ph) * 6;
+        if (e > 0.5 && Math.abs(tsx - q.x) > w * 0.5) { q.x = tsx; q.vx = 0; }
+      }
+      const tx = q.ix + (tsx - q.ix) * e, ty = q.iy + (tsy - q.iy) * e;
+      const dx = q.x - s.mx, dy = q.y - s.my, d2 = dx * dx + dy * dy;
+      if (d2 < 15000) { const d = Math.sqrt(d2) || 1, f = (1 - d / 122) * 2.6; q.vx += dx / d * f; q.vy += dy / d * f; }
+      q.vx += (tx + Math.sin(t * q.f1 + q.ph) * 7 * M - q.x) * 0.014;
+      q.vy += (ty + Math.cos(t * q.f2 + q.ph) * 7 * M - q.y) * 0.014;
+      q.vx *= 0.9; q.vy *= 0.9; q.x += q.vx; q.y += q.vy;
+      const tw = 1 - 0.55 * M * (0.5 + 0.5 * Math.sin(t * q.f3 + q.ph * 2));
+      const a = base * tw * (0.6 + 0.4 * e + (night ? 0 : 0.08));
+      const r = q.r * (0.85 + 0.5 * e);
+      if (night) {
+        c.fillStyle = 'rgba(' + q.col + ',' + a.toFixed(3) + ')';
+        c.fillRect(q.x - r / 2, q.y - r / 2, r, r);
+        if (q.glint && e > 0.25) {
+          c.strokeStyle = 'rgba(' + q.col + ',' + (a * 0.45).toFixed(3) + ')'; c.lineWidth = 0.7;
+          const sp = r * 3.2 * e;
+          c.beginPath(); c.moveTo(q.x - sp, q.y); c.lineTo(q.x + sp, q.y); c.moveTo(q.x, q.y - sp); c.lineTo(q.x, q.y + sp); c.stroke();
+        }
+        if (q.big) {
+          const rg = c.createRadialGradient(q.x, q.y, 0, q.x, q.y, 7 + 5 * e);
+          rg.addColorStop(0, 'rgba(' + q.col + ',' + (a * 0.42).toFixed(3) + ')');
+          rg.addColorStop(1, 'rgba(' + q.col + ',0)');
+          c.fillStyle = rg; c.beginPath(); c.arc(q.x, q.y, 7 + 5 * e, 0, 6.3); c.fill();
+        }
+      } else {
+        c.fillStyle = 'rgba(34,38,44,' + (a * 0.85).toFixed(3) + ')';
+        c.fillRect(q.x - r / 2, q.y - r / 2, r, r);
+      }
+    }
+  }
+
+  renderVals() {
+    const set = (o) => this.setState(o);
+    const scroll = (key) => (ev) => {
+      if (ev) ev.preventDefault();
+      const el = this[key];
+      if (el && el.parentNode) el.parentNode.scrollTo({ top: el.offsetTop - 26, behavior: 'smooth' });
+    };
+    return {
+      lang: this.lang, theme: this.theme, page: String(this.state.page), sty: this.state.sty,
+      motionVal: String(Math.round(this.motion * 100)),
+      isEn: this.lang === 'en' ? '1' : '0', isZh: this.lang === 'zh' ? '1' : '0',
+      isNight: this.theme === 'night' ? '1' : '0', isDay: this.theme === 'day' ? '1' : '0',
+      setEn: () => set({ lang: 'en' }), setZh: () => set({ lang: 'zh' }),
+      setNight: () => set({ theme: 'night' }), setDay: () => set({ theme: 'day' }),
+      setMotion: (ev) => set({ motion: +ev.target.value }),
+      toggleLang: () => set({ lang: this.lang === 'en' ? 'zh' : 'en' }),
+      toggleTheme: () => set({ theme: this.theme === 'night' ? 'day' : 'night' }),
+      pg0: () => set({ page: 0 }), pg1: () => set({ page: 1 }), pg2: () => set({ page: 2 }),
+      pg3: () => set({ page: 3 }), pg4: () => set({ page: 4 }), pg5: () => set({ page: 5 }),
+      toggleSty: () => set({ sty: this.state.sty === 'a' ? 'b' : 'a' }),
+      goHomeA: (ev) => { if (ev) ev.preventDefault(); if (this.sA) this.sA.scrollTo({ top: 0, behavior: 'smooth' }); },
+      refA: (el) => { this.cA = el; }, refB: (el) => { this.cB = el; },
+      refSA: (el) => { this.sA = el; },
+      refAbout: (el) => { this.eAbout = el; }, refRes: (el) => { this.eRes = el; }, refPub: (el) => { this.ePub = el; },
+      refTalk: (el) => { this.eTalk = el; }, refNotes: (el) => { this.eNotes = el; }, refContact: (el) => { this.eContact = el; },
+      goResA: scroll('eRes'), goPubA: scroll('ePub'), goTalkA: scroll('eTalk'), goNotesA: scroll('eTalk'), goContactA: scroll('eContact')
+    };
+  }
+}
+</script>
 </body>
 </html>
