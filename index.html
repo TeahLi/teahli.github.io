@@ -465,7 +465,7 @@ class Component extends DCLogic {
       im.onerror = () => res(null);
       im.src = src;
     });
-    Promise.all([get('assets/ink-canyon.jpg'), get('assets/galaxy.jpg'), get('assets/boat-ink.png')]).then(([ink, gal, bt]) => {
+    Promise.all([get('./ink-canyon.jpg'), get('./galaxy.jpg'), get('./boat-ink.png')]).then(([ink, gal, bt]) => {
       this.artInk = ink; this.artGal = gal;
       if (bt) { try { this.buildBoat(bt); } catch (e) { console.error('[boat]', e); } }
       if (ink) this.buildSample(ink);
