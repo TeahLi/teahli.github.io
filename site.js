@@ -372,6 +372,11 @@
   var rnd = function (s) { return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; };
   var STAR_COLS = ['205,222,255', '240,244,255', '255,224,178', '168,238,255'];
   var IMG_W = 736, IMG_H = 1308, IMG_R = IMG_H / IMG_W;   // 水墨原图比例
+  /* 原画在纵向 86% 处本来就画了一条船。设计稿的取景（1180×840）只显示
+     画面的 45.5%~85.5%，那条船落在裁切线以下，看不到。但竖屏手机为了
+     铺满高度会一路显示到 94%，画里的船就和 JS 画的船一起出现了。
+     这里只取原图上方 85%，下方不足的部分用水面最后几行向下延展补齐。 */
+  var IMG_CUT = 0.85;
   var BOAT_TRIM = 3;                                       // 船身俯仰角（度）
 
   /* 白天模式里水墨是用 multiply 压在浅色纸上的，正文又直接压在画面上，
@@ -492,10 +497,18 @@
     c.setTransform(dpr, 0, 0, dpr, 0, 0);
     c.clearRect(0, 0, w, h);
     if (this.artInk) {
+      var img = this.artInk;
+      var srcH = Math.round(img.height * IMG_CUT), dstH = im.dh * IMG_CUT;
       c.save();
       c.filter = night ? 'grayscale(1) contrast(.90) brightness(1.12)'
                        : 'grayscale(1) contrast(.80) brightness(1.10)';
-      c.drawImage(this.artInk, im.dx, im.dy, im.dw, im.dh);
+      c.drawImage(img, 0, 0, img.width, srcH, im.dx, im.dy, im.dw, dstH);
+      var yEnd = im.dy + dstH;
+      if (yEnd < h) {                       // 竖屏补底：延展水面，不留空档也不露出画里的船
+        var lip = Math.max(2, Math.round(img.height * 0.008));
+        c.drawImage(img, 0, srcH - lip, img.width, lip,
+                    im.dx, yEnd - 1, im.dw, (h - yEnd) + 2);
+      }
       c.filter = 'none';
       c.globalCompositeOperation = 'lighten';
       c.fillStyle = night ? 'rgb(58,64,78)' : 'rgb(102,104,106)';

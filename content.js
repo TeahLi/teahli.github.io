@@ -26,7 +26,7 @@ window.SITE = {
   /* ── 首页题词 ────────────────────────────────────────────────── */
   epigraph: {
     text:   { en: 'Reason is, and ought only to be the slave of the passions.',
-              zh: '理性是，且应当只是激情的奴隶。' },
+              zh: '理性是、而且应当只是激情的奴隶。' },
     source: { en: 'DAVID HUME', zh: '休谟' }
   },
 
@@ -49,7 +49,7 @@ window.SITE = {
   /* ── 研究方向 ────────────────────────────────────────────────── */
   research: [
     {
-      title: { en: 'Representation in LLM', zh: '大语言模型的表征' },
+      title: { en: 'Representation without a representer', zh: '没有表征者的表征' },
       body:  { en: 'Whether the internal states of deep networks are representations in any sense a philosopher should care about — and what interpretability results are actually evidence for.',
                zh: '深度网络的内部状态，在哲学上够得上「表征」吗？可解释性研究给出的，究竟是关于什么的证据？' }
     },
@@ -59,7 +59,7 @@ window.SITE = {
                zh: '选择性实在论、结构实在论与悲观归纳：哪些理论设定真正立得住，「近似真」这个说法到底做了多少工作。' }
     },
     {
-      title: { en: 'Instruments that think', zh: '能思考的仪器' },
+      title: { en: 'Instruments that think', zh: '会思考的仪器' },
       body:  { en: 'Machine learning as a new kind of scientific instrument: model-based understanding, opacity, and the epistemology of predictions nobody can follow.',
                zh: '把机器学习当作一种新的科学仪器：基于模型的理解、不透明性，以及无人能跟上的预测背后的认识论。' }
     }
